@@ -64,7 +64,7 @@ export const Hero = () => {
             </span>
           </Link>
           <Link
-            href="#demo"
+            href="/contact?ref=demo"
             className="flex items-center gap-3 text-white font-bold hover:text-slate-300 transition-colors px-6 py-5 group"
           >
             <div className="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center group-hover:border-[#1D9E75] group-hover:bg-[#1D9E75]/10 transition-all">

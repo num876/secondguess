@@ -1,9 +1,9 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, User, signOut } from "firebase/auth";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged, User, signOut, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
+import { auth, db, googleProvider, githubProvider } from "@/lib/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter, usePathname } from "next/navigation";
 
 interface AuthContextType {
@@ -11,6 +11,9 @@ interface AuthContextType {
   loading: boolean;
   userProfile: any | null;
   logout: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithGithub: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -18,6 +21,9 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
   userProfile: null,
   logout: async () => {},
+  signInWithGoogle: async () => {},
+  signInWithGithub: async () => {},
+  resetPassword: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -29,25 +35,40 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const router = useRouter();
   const pathname = usePathname();
 
+  const syncProfile = async (firebaseUser: User) => {
+    const userRef = doc(db, "users", firebaseUser.uid);
+    const userDoc = await getDoc(userRef);
+    
+    if (userDoc.exists()) {
+      const profile = userDoc.data();
+      setUserProfile(profile);
+      return profile;
+    } else {
+      // Create profile if it doesn't exist (e.g. first social login)
+      const newProfile = {
+        email: firebaseUser.email,
+        createdAt: new Date().toISOString(),
+        siteId: null,
+      };
+      await setDoc(userRef, newProfile);
+      setUserProfile(newProfile);
+      return newProfile;
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
-        // Fetch user profile from Firestore to get siteId
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists()) {
-          const profile = userDoc.data();
-          setUserProfile(profile);
-          
-          // Redirect if on login and has site
-          if (pathname === "/login") {
+        const profile = await syncProfile(user);
+        
+        // Redirect logic
+        if (pathname === "/login") {
+          if (profile.siteId) {
             router.push("/dashboard");
+          } else {
+            router.push("/setup");
           }
-        } else {
-            // New user, maybe redirect to setup if not there
-            if (pathname !== "/setup" && pathname !== "/login") {
-                router.push("/setup");
-            }
         }
       } else {
         setUser(null);
@@ -67,8 +88,38 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     router.push("/login");
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error("Google sign in failed", error);
+      throw error;
+    }
+  };
+
+  const signInWithGithub = async () => {
+    try {
+      await signInWithPopup(auth, githubProvider);
+    } catch (error) {
+      console.error("Github sign in failed", error);
+      throw error;
+    }
+  };
+
+  const resetPassword = async (email: string) => {
+    await sendPasswordResetEmail(auth, email);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, userProfile, logout }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      loading, 
+      userProfile, 
+      logout, 
+      signInWithGoogle, 
+      signInWithGithub,
+      resetPassword 
+    }}>
       {children}
     </AuthContext.Provider>
   );

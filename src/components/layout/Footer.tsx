@@ -24,7 +24,8 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Product</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
+              <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/integrations" className="hover:text-white transition-colors">Integrations</Link></li>
               <li><Link href="/docs/installation" className="hover:text-white transition-colors">Installation</Link></li>
               <li><Link href="/settings" className="hover:text-white transition-colors">Settings</Link></li>
             </ul>
@@ -33,18 +34,19 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
+              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-6">Connect</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Twitter (X)</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">GitHub</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Discord</a></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact Support</Link></li>
+              <li><a href="https://twitter.com/secondguess" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter (X)</a></li>
+              <li><a href="https://github.com/secondguess" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
             </ul>
           </div>
         </div>

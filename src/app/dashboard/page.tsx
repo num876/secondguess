@@ -29,33 +29,56 @@ export default function DashboardPage() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // In a real app, you'd use a cloud function or complex aggregation
-        // Here we'll do a simple fetch and aggregate client-side for the demo
-        const eventsRef = collection(db, "events", userProfile.siteId, "sessions");
-        const sessionsSnapshot = await getDocs(eventsRef);
+        // 1. Fetch Session Stats from the live collection
+        const sessionsRef = collection(db, "sessions", userProfile.siteId, "live");
+        const sessionsSnapshot = await getDocs(sessionsRef);
         
         let totalVisitors = sessionsSnapshot.size;
         let convertedSessions = 0;
         let totalDuration = 0;
+        let sessionCount = 0;
 
-        // Mock/Simplified aggregation logic
-        // This would normally be calculated from the events/{sessionId}/events subcollection
-        setStats({
-          visitors: totalVisitors || 0,
-          avgDuration: "4m 12s",
-          dropOffRate: totalVisitors ? `${Math.round(((totalVisitors - 24) / totalVisitors) * 100)}%` : "0%",
-          conversions: 24
+        const urlCounts: Record<string, number> = {};
+
+        sessionsSnapshot.forEach(doc => {
+          const data = doc.data();
+          if (data.signals?.includes('converted')) convertedSessions++;
+          
+          if (data.sessionStart && data.lastSeen) {
+            const duration = new Date(data.lastSeen).getTime() - new Date(data.sessionStart).getTime();
+            totalDuration += duration;
+            sessionCount++;
+          }
+
+          if (data.currentUrl) {
+            urlCounts[data.currentUrl] = (urlCounts[data.currentUrl] || 0) + 1;
+          }
         });
 
-        // Mock Funnel Data (Simulating URL visit counts)
-        setFunnelSteps([
-          { url: "/", visits: totalVisitors || 1240, percentage: 100, dropOff: 24 },
-          { url: "/pricing", visits: 942, percentage: 76, dropOff: 42 },
-          { url: "/checkout", visits: 546, percentage: 44, dropOff: 65 },
-          { url: "/success", visits: 191, percentage: 15, dropOff: 0 },
-        ]);
+        const avgDurationMs = sessionCount > 0 ? totalDuration / sessionCount : 0;
+        const mins = Math.floor(avgDurationMs / 60000);
+        const secs = Math.floor((avgDurationMs % 60000) / 1000);
 
-        // Mock Heatmap Data
+        setStats({
+          visitors: totalVisitors,
+          avgDuration: `${mins}m ${secs}s`,
+          dropOffRate: totalVisitors > 0 ? `${Math.round(((totalVisitors - convertedSessions) / totalVisitors) * 100)}%` : "0%",
+          conversions: convertedSessions
+        });
+
+        // 2. Funnel Data (Calculated from URL counts)
+        const sortedUrls = Object.entries(urlCounts)
+          .sort(([, a], [, b]) => (b as number) - (a as number))
+          .slice(0, 4);
+
+        setFunnelSteps(sortedUrls.map(([url, count], idx) => ({
+          url,
+          visits: count,
+          percentage: Math.round(((count as number) / totalVisitors) * 100),
+          dropOff: idx < sortedUrls.length - 1 ? (count as number) - (sortedUrls[idx+1][1] as number) : 0
+        })));
+
+        // 3. Heatmap Data (Mocking sections for now as raw event aggregation is heavy for client-side)
         setHeatmapSections([
           { section: "hero-section", reach: 98, avgTime: "45s" },
           { section: "features-grid", reach: 74, avgTime: "1m 12s" },
@@ -64,7 +87,7 @@ export default function DashboardPage() {
         ]);
 
       } catch (err) {
-        console.error(err);
+        console.error("Dashboard Fetch Error:", err);
       } finally {
         setLoading(false);
       }

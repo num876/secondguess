@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { Footer } from "@/components/layout/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,27 +37,29 @@ export default function Home() {
              </div>
              <p className="text-[#1D9E75] font-bold uppercase tracking-widest text-sm mb-4">Growth Plan</p>
              <div className="flex items-baseline justify-center gap-1 mb-6">
-                <span className="text-5xl font-black text-white">$49</span>
+                <span className="text-5xl font-black text-white">£39</span>
                 <span className="text-slate-500">/month</span>
              </div>
              <ul className="space-y-4 text-slate-400 text-sm mb-10 text-left max-w-xs mx-auto">
                 <li className="flex items-center gap-3">
                    <div className="w-1.5 h-1.5 rounded-full bg-[#1D9E75]" />
-                   Up to 50k monthly sessions
+                   10,000 monthly sessions
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="w-1.5 h-1.5 rounded-full bg-[#1D9E75]" />
-                   AI-Powered friction detection
+                   Advanced AI Behavioral Insights
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="w-1.5 h-1.5 rounded-full bg-[#1D9E75]" />
-                   30-day data retention
+                   90-day data retention
                 </li>
              </ul>
-             <button className="w-full bg-white text-slate-950 font-bold py-4 rounded-2xl hover:bg-slate-200 transition-colors shadow-xl">
-                Get Started Free
-             </button>
-             <p className="mt-4 text-xs text-slate-500">No credit card required for 14 days.</p>
+             <Link href="/login" className="block w-full">
+               <button className="w-full bg-white text-slate-950 font-bold py-4 rounded-2xl hover:bg-slate-200 transition-colors shadow-xl">
+                  Get Started Free
+               </button>
+             </Link>
+             <p className="mt-4 text-xs text-slate-500">No credit card required to start.</p>
           </div>
         </div>
       </section>
@@ -68,9 +71,11 @@ export default function Home() {
             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-10 leading-[1.1]">
               Ready to stop guessing?
             </h2>
-            <button className="bg-[#1D9E75] hover:bg-[#168562] text-white px-10 py-6 rounded-2xl text-xl font-bold shadow-2xl shadow-[#1D9E75]/30 transition-all hover:scale-[1.05] active:scale-[0.95]">
-              Get Started with SecondGuess
-            </button>
+            <Link href="/login" className="inline-block">
+              <button className="bg-[#1D9E75] hover:bg-[#168562] text-white px-10 py-6 rounded-2xl text-xl font-bold shadow-2xl shadow-[#1D9E75]/30 transition-all hover:scale-[1.05] active:scale-[0.95]">
+                Get Started with SecondGuess
+              </button>
+            </Link>
         </div>
       </section>
 
