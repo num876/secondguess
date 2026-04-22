@@ -46,7 +46,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-3 sm:mb-4 lg:mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-3 sm:mb-4 lg:mb-8"
           >
             Uncover the <br/>
             <span className="text-emerald-400">Hidden WHY.</span>
