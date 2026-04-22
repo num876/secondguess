@@ -1,8 +1,8 @@
+'use client';
+
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
-
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "",
@@ -18,8 +18,6 @@ if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
     apiKey: !!firebaseConfig.apiKey,
     projectId: !!firebaseConfig.projectId
   });
-} else {
-  console.log("Firebase config loaded successfully for project:", firebaseConfig.projectId);
 }
 
 // Initialize Firebase
@@ -27,7 +25,11 @@ let app;
 try {
   app = getApp();
 } catch (e) {
-  app = initializeApp(firebaseConfig);
+  if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+    app = initializeApp(firebaseConfig);
+  } else {
+    throw new Error("Firebase config is incomplete. Check environment variables.");
+  }
 }
 
 const auth = getAuth(app);
