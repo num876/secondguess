@@ -77,12 +77,13 @@ p, span, li, label, button, a {
 /* Touch-friendly minimum target size (44x44px) */
 @layer components {
   .touch-target {
-    @apply min-h-11 min-w-11;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
   }
   
   /* Mobile-first responsive utilities */
   .h-screen-mobile {
-    height: 100svh; /* Use small viewport height for mobile */
+    height: 100svh;
   }
   
   /* Safe area insets for notched devices */
@@ -225,16 +226,20 @@ p, span, li, label, button, a {
   
   /* Focus indicator for accessibility */
   .focus-ring {
-    @apply outline-none ring-2 ring-offset-2 ring-emerald-500;
+    outline: none;
+    ring-width: 2px;
+    ring-color: rgb(16, 185, 129);
   }
   
   /* Mobile-friendly button sizes */
   .btn-mobile {
-    @apply py-3 px-4 touch-target;
+    padding: 0.75rem 1rem;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
   }
   
   /* Ensure text never goes below minimum readable size */
   .text-readable {
-    @apply text-sm sm:text-base;
+    font-size: clamp(0.875rem, 1rem, 1rem);
   }
 }
