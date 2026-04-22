@@ -225,7 +225,7 @@ p, span, li, label, button, a {
   
   /* Focus indicator for accessibility */
   .focus-ring {
-    @apply outline-none ring-2 ring-offset-2 ring-brand-primary;
+    @apply outline-none ring-2 ring-offset-2 ring-emerald-500;
   }
   
   /* Mobile-friendly button sizes */
