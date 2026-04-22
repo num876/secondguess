@@ -36,17 +36,17 @@ export const Hero = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5"
+            className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-4 sm:mb-6 lg:mb-10 shadow-lg shadow-emerald-500/5"
           >
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>v2.0 Neural Engine Live</span>
+            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>v2.0 Neural Engine</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-6 sm:mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-3 sm:mb-4 lg:mb-8"
           >
             Uncover the <br/>
             <span className="text-emerald-400">Hidden WHY.</span>
@@ -56,31 +56,31 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
+            className="text-sm sm:text-base md:text-lg text-slate-400 max-w-xl leading-relaxed font-medium mb-6 sm:mb-8 lg:mb-12"
           >
-            Stop guessing why your customers leave. <span className="text-white font-bold">Forensiq</span> uses behavioral AI to replay sessions and flag conversion friction before it costs you revenue.
+            Stop guessing why customers leave. <span className="text-white font-bold">Forensiq</span> uses behavioral AI to replay sessions and flag conversion friction before it costs you revenue.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8"
+            className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-6"
           >
             <Link
               href="/login"
-              className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] touch-target w-full sm:w-auto text-center"
+              className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] touch-target w-full sm:w-auto text-center"
             >
-              Start Free Forensic Audit
+              Start Free Audit
             </Link>
             <Link
               href="/contact?ref=demo"
-              className="flex items-center gap-3 sm:gap-4 text-white font-black uppercase tracking-wider text-sm hover:text-emerald-400 transition-colors group pt-2"
+              className="flex items-center gap-2 sm:gap-3 text-white font-black uppercase tracking-wider text-xs sm:text-sm hover:text-emerald-400 transition-colors group"
             >
-              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all touch-target">
-                <Play className="w-4 h-4 fill-white group-hover:fill-emerald-400 group-hover:text-emerald-400" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all touch-target shrink-0">
+                <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white group-hover:fill-emerald-400 group-hover:text-emerald-400" />
               </div>
-              <span className="hidden sm:inline">View Studio Demo</span>
+              <span className="hidden sm:inline">View Demo</span>
               <span className="sm:hidden">Demo</span>
             </Link>
           </motion.div>
