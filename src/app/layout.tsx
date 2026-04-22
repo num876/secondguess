@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthContextProvider } from "@/context/AuthContext";
 import { IntegrationProvider } from "@/context/IntegrationContext";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         <AuthContextProvider>
           <IntegrationProvider>
-            {children}
+            <SmoothScroll>
+              {children}
+            </SmoothScroll>
           </IntegrationProvider>
         </AuthContextProvider>
       </body>

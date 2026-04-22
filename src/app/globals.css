@@ -20,6 +20,7 @@ body {
   color: #020617; /* slate-950 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 .dark-mesh {

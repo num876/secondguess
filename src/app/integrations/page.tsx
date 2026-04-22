@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Search, Puzzle, ExternalLink, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CATEGORIES = ["All", "E-commerce", "Marketing", "Infrastructure", "Product Analytics"];
 
@@ -151,12 +152,15 @@ export default function IntegrationsPage() {
                     className="w-16 h-16 rounded-2xl p-3 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-black/20"
                     style={{ backgroundColor: app.color + '20', border: '1px solid ' + app.color + '40' }}
                   >
-                     <img 
-                      src={app.logo} 
-                      alt={app.name} 
-                      className="w-10 h-10 object-contain transition-all opacity-95 group-hover:opacity-100 group-hover:scale-110" 
-                      style={{ filter: 'brightness(0) invert(1)' }}
-                     />
+                     <div className="relative w-10 h-10 transition-all opacity-95 group-hover:opacity-100 group-hover:scale-110">
+                        <Image 
+                          src={app.logo} 
+                          alt={app.name} 
+                          fill
+                          className="object-contain" 
+                          style={{ filter: 'brightness(0) invert(1)' }}
+                        />
+                     </div>
                   </div>
                   {app.featured && (
                     <div className="px-3 py-1 bg-[#1D9E75]/10 border border-[#1D9E75]/20 rounded-full text-[#1D9E75] text-[10px] font-bold uppercase tracking-widest">

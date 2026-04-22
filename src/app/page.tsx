@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -99,10 +100,13 @@ export default function Home() {
               className="relative group"
             >
               <div className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] max-w-md mx-auto lg:mx-0">
-                 <img 
+                 <Image 
                    src="/founder_portrait_1776861054849.png" 
                    alt="Numayr Malik - Founder" 
+                   width={400}
+                   height={500}
                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
+                   priority
                  />
                  
                  {/* Scanning Laser Line */}
@@ -162,8 +166,13 @@ export default function Home() {
                 </p>
 
                 <div className="flex items-center gap-6 border-t border-white/5 pt-8">
-                   <div className="w-16 h-16 rounded-2xl overflow-hidden grayscale border border-white/10">
-                      <img src="/founder_portrait_1776861054849.png" alt="Numayr Signature" className="w-full h-full object-cover" />
+                   <div className="w-16 h-16 rounded-2xl overflow-hidden grayscale border border-white/10 relative">
+                      <Image 
+                        src="/founder_portrait_1776861054849.png" 
+                        alt="Numayr Signature" 
+                        fill
+                        className="object-cover" 
+                      />
                    </div>
                    <div>
                       <h4 className="text-white font-black uppercase tracking-widest text-sm">Numayr Malik</h4>

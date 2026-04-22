@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Search, Tag, Calendar, User, ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CATEGORIES = ["All", "Product Updates", "CRO Tips", "Engineering", "Case Studies"];
 
@@ -119,10 +120,12 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-6">
           {activeCategory === "All" && filteredPosts.length > 0 && (
              <div className="relative aspect-[21/9] rounded-[40px] overflow-hidden group mb-12">
-                <img 
+                <Image 
                   src={POSTS[0].image} 
                   alt={POSTS[0].title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-2xl">
@@ -153,10 +156,11 @@ export default function BlogPage() {
               >
                 <Link href={`/blog/${post.id}`}>
                   <div className="aspect-[16/10] rounded-3xl overflow-hidden mb-6 relative">
-                    <img 
+                    <Image 
                       src={post.image} 
                       alt={post.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-[#1D9E75]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute top-4 left-4">

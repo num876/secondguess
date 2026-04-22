@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "fire
 import { auth, db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Mail, Lock, Loader2, ArrowRight, MousePointer2, Code, ShieldCheck, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GhostCursors } from "@/components/auth/GhostCursors";
@@ -421,7 +422,13 @@ export default function LoginPage() {
                         {socialLoading === "google" ? (
                           <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                         ) : (
-                          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/smartlock/google.svg" className="w-5 h-5" alt="Google" />
+                          <Image 
+                            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/smartlock/google.svg" 
+                            className="w-5 h-5" 
+                            alt="Google" 
+                            width={20}
+                            height={20}
+                          />
                         )}
                         <span className="text-sm font-bold text-white">
                           {socialLoading === "google" ? "Connecting..." : "Google"}
