@@ -1,8 +1,8 @@
+'use client';
+
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
-
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "",
@@ -13,27 +13,43 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
 };
 
-if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-  console.error("FIREBASE CONFIG ERROR: Environment variables are missing!", {
+const isConfigValid = () => {
+  return !!(firebaseConfig.apiKey && firebaseConfig.projectId);
+};
+
+if (!isConfigValid()) {
+  console.error("[v0] FIREBASE CONFIG ERROR: Environment variables are missing!", {
     apiKey: !!firebaseConfig.apiKey,
     projectId: !!firebaseConfig.projectId
   });
-} else {
-  console.log("Firebase config loaded successfully for project:", firebaseConfig.projectId);
 }
 
-// Initialize Firebase
-let app;
-try {
-  app = getApp();
-} catch (e) {
-  app = initializeApp(firebaseConfig);
+// Initialize Firebase with error handling - don't crash if config is missing
+let app: any = null;
+let auth: any = null;
+let db: any = null;
+let googleProvider: any = null;
+let githubProvider: any = null;
+
+if (isConfigValid()) {
+  try {
+    const apps = getApps();
+    if (apps.length > 0) {
+      app = getApp();
+    } else {
+      app = initializeApp(firebaseConfig);
+    }
+    auth = getAuth(app);
+    db = getFirestore(app);
+    googleProvider = new GoogleAuthProvider();
+    githubProvider = new GithubAuthProvider();
+  } catch (e) {
+    console.error("[v0] Firebase initialization error:", e);
+    // Set all to null so app can still load
+    app = null;
+    auth = null;
+    db = null;
+  }
 }
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
-
-export { app, auth, db, googleProvider, githubProvider };
+export { app, auth, db, googleProvider, githubProvider, isConfigValid };

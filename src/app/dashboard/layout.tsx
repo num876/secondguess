@@ -140,7 +140,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-[#020617] flex font-sans">
+      <div className="min-h-screen bg-[#020617] flex flex-col lg:flex-row font-sans">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:flex w-80 dark-mesh border-r border-white/5 flex-col sticky top-0 h-screen z-50">
           <SidebarContent />
@@ -155,9 +155,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         )}
 
         {/* Mobile Sidebar */}
-        <aside className={`fixed inset-y-0 left-0 w-80 dark-mesh z-[70] flex flex-col transition-transform duration-500 ease-out lg:hidden ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
-          <div className="absolute top-6 right-6 lg:hidden">
-            <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-slate-400 hover:text-white">
+        <aside className={`fixed inset-y-0 left-0 w-80 dark-mesh z-[70] flex flex-col transition-transform duration-300 ease-out lg:hidden overflow-y-auto max-h-screen ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+          <div className="absolute top-4 right-4 lg:hidden">
+            <button 
+              onClick={() => setIsSidebarOpen(false)} 
+              className="p-2 text-slate-400 hover:text-white touch-target rounded-lg transition-colors"
+              aria-label="Close sidebar"
+            >
               <X className="w-6 h-6" />
             </button>
           </div>
@@ -166,51 +170,54 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-w-0">
-          <header className="h-20 bg-[#020617]/40 backdrop-blur-3xl border-b border-white/5 px-4 sm:px-10 flex items-center justify-between sticky top-0 z-40">
-            <div className="flex items-center gap-6">
+          <header className="h-16 sm:h-20 bg-[#020617]/40 backdrop-blur-3xl border-b border-white/5 px-4 sm:px-6 md:px-10 flex items-center justify-between sticky top-0 z-40">
+            <div className="flex items-center gap-4 sm:gap-6 min-w-0">
                <button 
                 onClick={() => setIsSidebarOpen(true)}
-                className="lg:hidden p-2 -ml-2 text-slate-400 hover:text-white"
+                className="lg:hidden p-2 -ml-2 text-slate-400 hover:text-white touch-target rounded-lg transition-colors"
+                aria-label="Open sidebar"
                >
-                 <Menu className="w-6 h-6" />
+                 <Menu className="w-5 sm:w-6 h-5 sm:h-6" />
                </button>
-               <h2 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] hidden sm:block">
+               <h2 className="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-wider hidden sm:block truncate">
                  {navItems.find(i => i.href === pathname)?.name || "Dashboard"}
                </h2>
             </div>
 
-            <div className="flex items-center gap-6 relative">
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 relative">
               <button 
                 onClick={() => setIsNotifOpen(!isNotifOpen)}
-                className="p-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-2xl transition-all relative"
+                className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl sm:rounded-2xl transition-all touch-target relative shrink-0"
+                aria-label={isNotifOpen ? "Close notifications" : "Open notifications"}
+                aria-expanded={isNotifOpen}
               >
                 <Bell className="w-5 h-5" />
-                <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-emerald-500 rounded-full border-2 border-[#020617]" />
+                <span className="absolute top-2 right-2 w-2 h-2 bg-emerald-500 rounded-full border-2 border-[#020617]" />
               </button>
 
               {isNotifOpen && (
-                <div className="absolute top-full right-0 mt-4 w-96 glass-card-dark border border-white/10 rounded-3xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] z-50 overflow-hidden animate-fade-up">
-                   <div className="p-6 border-b border-white/5 flex justify-between items-center">
-                      <span className="text-sm font-black tracking-widest text-white uppercase">Neural Feed</span>
-                      <span className="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg font-black tracking-widest">2 ACTIVE</span>
+                <div className="absolute top-full right-0 mt-3 w-80 sm:w-96 glass-card-dark border border-white/10 rounded-2xl sm:rounded-3xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] z-50 overflow-hidden animate-fade-up max-h-[calc(100vh-120px)] flex flex-col">
+                   <div className="p-4 sm:p-6 border-b border-white/5 flex justify-between items-center shrink-0">
+                      <span className="text-xs sm:text-sm font-black tracking-wider text-white uppercase">Neural Feed</span>
+                      <span className="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg font-black tracking-wider">2 ACTIVE</span>
                    </div>
-                   <div className="max-h-[500px] overflow-y-auto">
-                      <div className="p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
-                         <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-widest">Cognitive Engine: ACTIVE</p>
-                         <p className="text-[11px] text-slate-400 mt-2 leading-relaxed font-medium">Intelligence synchronization complete. Forensic patterns are now being mapped to your session data.</p>
+                   <div className="overflow-y-auto flex-1">
+                      <div className="p-4 sm:p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
+                         <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-wider">Cognitive Engine: ACTIVE</p>
+                         <p className="text-xs text-slate-400 mt-2 leading-relaxed font-medium">Intelligence synchronization complete. Forensic patterns are now being mapped to your session data.</p>
                       </div>
-                      <div className="p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
-                         <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-widest">Site Signal: HEALTHY</p>
-                         <p className="text-[11px] text-slate-400 mt-2 leading-relaxed font-medium">Real-time behavioral telemetry detected. Live session visualization is active.</p>
+                      <div className="p-4 sm:p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
+                         <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-wider">Site Signal: HEALTHY</p>
+                         <p className="text-xs text-slate-400 mt-2 leading-relaxed font-medium">Real-time behavioral telemetry detected. Live session visualization is active.</p>
                       </div>
                    </div>
                 </div>
               )}
 
-              <div className="h-8 w-[1px] bg-white/5 mx-2" />
+              <div className="hidden sm:block h-8 w-[1px] bg-white/5" />
               
               <button 
-                className={`flex items-center gap-3 px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] transition-all shadow-2xl ${
+                className={`flex items-center gap-2 px-3 sm:px-5 py-2 rounded-xl sm:rounded-2xl text-xs font-black uppercase tracking-wider transition-all shadow-2xl shrink-0 ${
                   siteHealth === 'active' 
                     ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-emerald-500/5" 
                     : siteHealth === 'loading'
@@ -219,18 +226,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 }`}
               >
                 {siteHealth === 'loading' ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin shrink-0" />
                 ) : (
-                  <ShieldCheck className="w-4 h-4" />
+                  <ShieldCheck className="w-4 h-4 shrink-0" />
                 )}
-                <span className="hidden xs:inline">
-                  {siteHealth === 'active' ? 'Signal Active' : siteHealth === 'loading' ? 'Syncing...' : 'Signal Offline'}
+                <span className="hidden sm:inline">
+                  {siteHealth === 'active' ? 'Active' : siteHealth === 'loading' ? 'Syncing...' : 'Offline'}
                 </span>
               </button>
             </div>
           </header>
 
-          <main className="flex-1 p-6 sm:p-10">
+          <main className="flex-1 p-4 sm:p-6 md:p-10 overflow-y-auto">
             <div className="max-w-[1600px] mx-auto animate-fade-up">
               {children}
             </div>

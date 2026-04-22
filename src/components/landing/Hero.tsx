@@ -23,20 +23,20 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-[#020617]">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-24 pb-8 overflow-hidden bg-[#020617]">
       {/* Background Layer */}
       <InteractiveMesh />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/50 to-[#020617] pointer-events-none" />
 
       {/* Content Layer */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
         <div className="text-left">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10 shadow-2xl shadow-emerald-500/5"
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5"
           >
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>v2.0 Neural Engine Live</span>
@@ -46,7 +46,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl font-black text-white leading-[0.95] tracking-tighter mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-6 sm:mb-8"
           >
             Uncover the <br/>
             <span className="text-emerald-400">Hidden WHY.</span>
@@ -56,7 +56,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-12"
+            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
           >
             Stop guessing why your customers leave. <span className="text-white font-bold">Forensiq</span> uses behavioral AI to replay sessions and flag conversion friction before it costs you revenue.
           </motion.p>
@@ -65,32 +65,33 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-8"
+            className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8"
           >
             <Link
               href="/login"
-              className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-10 py-5 rounded-full text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
+              className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] touch-target w-full sm:w-auto text-center"
             >
               Start Free Forensic Audit
             </Link>
             <Link
               href="/contact?ref=demo"
-              className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-[10px] hover:text-emerald-400 transition-colors group"
+              className="flex items-center gap-3 sm:gap-4 text-white font-black uppercase tracking-wider text-sm hover:text-emerald-400 transition-colors group pt-2"
             >
-              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all touch-target">
                 <Play className="w-4 h-4 fill-white group-hover:fill-emerald-400 group-hover:text-emerald-400" />
               </div>
-              View Studio Demo
+              <span className="hidden sm:inline">View Studio Demo</span>
+              <span className="sm:hidden">Demo</span>
             </Link>
           </motion.div>
         </div>
 
         {/* Dynamic Visualization Side */}
-        <div className="relative">
+        <div className="relative hidden lg:block">
           {/* Live Signal Feed */}
-          <div className="absolute -top-12 -left-12 z-20 w-72 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl hidden md:block">
+          <div className="absolute -top-12 -left-12 z-20 w-72 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl">
              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Signal Feed</span>
+                <span className="text-xs font-black text-slate-500 uppercase tracking-wider">Signal Feed</span>
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
              </div>
              <div className="space-y-3">
@@ -99,7 +100,7 @@ export const Hero = () => {
                     key={s + i}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-[9px] font-mono text-emerald-400/80 leading-tight"
+                    className="text-xs font-mono text-emerald-400/80 leading-tight"
                   >
                     {s}
                   </motion.div>
@@ -119,7 +120,7 @@ export const Hero = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
               </div>
-              <div className="mx-auto bg-white/5 px-4 py-1.5 rounded-full text-[9px] text-slate-500 font-black tracking-widest uppercase">
+              <div className="mx-auto bg-white/5 px-4 py-1.5 rounded-full text-xs text-slate-500 font-black tracking-wider uppercase">
                 forensiq.studio/live/v_8291
               </div>
             </div>
@@ -130,10 +131,10 @@ export const Hero = () => {
                
                <div className="flex flex-col items-center gap-4 relative z-10">
                  <Layout className="w-12 h-12 text-emerald-500 opacity-20" />
-                 <p className="text-slate-700 font-black uppercase tracking-[0.3em] text-[10px]">Awaiting Signal...</p>
+                 <p className="text-slate-700 font-black uppercase tracking-wider text-xs">Awaiting Signal...</p>
                </div>
                
-               {/* Upgraded simulated ghost cursor */}
+               {/* Upgraded simulated ghost cursor - reduced animation on mobile via reduced-motion */}
                <motion.div
                  animate={{ 
                    x: [0, 150, -100, 250, 0],
@@ -145,7 +146,7 @@ export const Hero = () => {
                  <div className="relative">
                     <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-30 rounded-full scale-150 animate-pulse" />
                     <ArrowRight className="w-6 h-6 text-white rotate-[135deg] drop-shadow-2xl relative z-10" />
-                    <div className="absolute left-6 top-0 bg-emerald-500 text-[10px] font-black px-3 py-1 rounded-full whitespace-nowrap shadow-xl shadow-emerald-500/20 border border-white/20">
+                    <div className="absolute left-6 top-0 bg-emerald-500 text-xs font-black px-3 py-1 rounded-full whitespace-nowrap shadow-xl shadow-emerald-500/20 border border-white/20">
                       Visitor #2901
                     </div>
                  </div>
@@ -167,7 +168,7 @@ export const Hero = () => {
             transition={{ delay: 1, duration: 1 }}
             className="absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl"
           >
-             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Health Score</p>
+             <p className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Health Score</p>
              <div className="flex items-center gap-4">
                 <span className="text-3xl font-black text-emerald-400">98%</span>
                 <div className="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden">
