@@ -14,6 +14,8 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<void>;
   signInWithGithub: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  updateProfile: (data: any) => Promise<void>;
+  updateSiteConfig: (data: any) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -24,6 +26,8 @@ const AuthContext = createContext<AuthContextType>({
   signInWithGoogle: async () => {},
   signInWithGithub: async () => {},
   resetPassword: async () => {},
+  updateProfile: async () => {},
+  updateSiteConfig: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -36,23 +40,39 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   const syncProfile = async (firebaseUser: User) => {
-    const userRef = doc(db, "users", firebaseUser.uid);
-    const userDoc = await getDoc(userRef);
-    
-    if (userDoc.exists()) {
-      const profile = userDoc.data();
-      setUserProfile(profile);
-      return profile;
-    } else {
-      // Create profile if it doesn't exist (e.g. first social login)
-      const newProfile = {
-        email: firebaseUser.email,
-        createdAt: new Date().toISOString(),
-        siteId: null,
-      };
-      await setDoc(userRef, newProfile);
-      setUserProfile(newProfile);
-      return newProfile;
+    try {
+      const userRef = doc(db, "users", firebaseUser.uid);
+      const userDoc = await getDoc(userRef);
+      
+      if (userDoc.exists()) {
+        const profile = userDoc.data();
+        // Fetch site data if siteId exists
+        let siteData = {};
+        if (profile.siteId) {
+          const siteRef = doc(db, "sites", profile.siteId);
+          const siteDoc = await getDoc(siteRef);
+          if (siteDoc.exists()) {
+            siteData = siteDoc.data();
+          }
+        }
+        
+        const combinedProfile = { ...profile, ...siteData };
+        setUserProfile(combinedProfile);
+        return combinedProfile;
+      } else {
+        const newProfile = {
+          email: firebaseUser.email,
+          fullName: firebaseUser.displayName || "",
+          createdAt: new Date().toISOString(),
+          siteId: null,
+        };
+        await setDoc(userRef, newProfile);
+        setUserProfile(newProfile);
+        return newProfile;
+      }
+    } catch (err) {
+      console.error("Profile sync failed", err);
+      return null;
     }
   };
 
@@ -64,7 +84,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         
         // Redirect logic
         if (pathname === "/login") {
-          if (profile.siteId) {
+          if (profile && (profile as any).siteId) {
             router.push("/dashboard");
           } else {
             router.push("/setup");
@@ -73,7 +93,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       } else {
         setUser(null);
         setUserProfile(null);
-        if (pathname.startsWith("/dashboard") || pathname === "/setup") {
+        if (pathname.startsWith("/dashboard") || pathname === "/setup" || pathname === "/settings") {
           router.push("/login");
         }
       }
@@ -110,6 +130,20 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     await sendPasswordResetEmail(auth, email);
   };
 
+  const updateProfile = async (data: any) => {
+    if (!user) return;
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(userRef, data, { merge: true });
+    setUserProfile((prev: any) => ({ ...prev, ...data }));
+  };
+
+  const updateSiteConfig = async (data: any) => {
+    if (!userProfile?.siteId) return;
+    const siteRef = doc(db, "sites", userProfile.siteId);
+    await setDoc(siteRef, data, { merge: true });
+    setUserProfile((prev: any) => ({ ...prev, ...data }));
+  };
+
   return (
     <AuthContext.Provider value={{ 
       user, 
@@ -118,7 +152,9 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       logout, 
       signInWithGoogle, 
       signInWithGithub,
-      resetPassword 
+      resetPassword,
+      updateProfile,
+      updateSiteConfig
     }}>
       {children}
     </AuthContext.Provider>

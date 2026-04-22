@@ -147,10 +147,14 @@ export default function PricingPage() {
                 </div>
 
                 <Link
-                  href={plan.price === "Custom" ? "/contact" : "/login"}
+                  href={
+                    plan.name === "Enterprise" 
+                      ? "/contact?subject=Enterprise+%2F+Sales"
+                      : `/login?plan=${plan.name.toLowerCase()}`
+                  }
                   className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all ${
                     plan.popular
-                    ? "bg-[#1D9E75] text-white hover:bg-[#168562] shadow-xl shadow-[#1D9E75]/20"
+                    ? "bg-emerald-500 text-slate-950 hover:bg-emerald-400 shadow-xl shadow-emerald-500/20"
                     : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
                   }`}
                 >

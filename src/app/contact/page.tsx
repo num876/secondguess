@@ -1,25 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Mail, MessageSquare, Send, CheckCircle2, LifeBuoy, BookOpen, Activity } from "lucide-react";
 import Link from "next/link";
-import { GhostCursors } from "@/components/auth/GhostCursors";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function ContactPage() {
+function ContactContent() {
+  const searchParams = useSearchParams();
+  const defaultSubject = searchParams?.get("subject") || "General Inquiry";
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", subject: defaultSubject, message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed");
       setSubmitted(true);
-    }, 1500);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -109,24 +129,35 @@ export default function ContactPage() {
                         <label className="text-sm font-bold text-slate-400 ml-1">Full Name</label>
                         <input 
                           required
+                          name="name"
                           type="text" 
+                          value={form.name}
+                          onChange={handleChange}
                           placeholder="John Doe"
-                          className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#1D9E75]/50 transition-colors"
+                          className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-colors"
                         />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-bold text-slate-400 ml-1">Email Address</label>
                         <input 
                           required
+                          name="email"
                           type="email" 
+                          value={form.email}
+                          onChange={handleChange}
                           placeholder="john@company.com"
-                          className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#1D9E75]/50 transition-colors"
+                          className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-colors"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-slate-400 ml-1">Subject</label>
-                      <select className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#1D9E75]/50 transition-colors appearance-none">
+                      <select 
+                        name="subject"
+                        value={form.subject}
+                        onChange={handleChange}
+                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-colors appearance-none"
+                      >
                          <option>General Inquiry</option>
                          <option>Enterprise / Sales</option>
                          <option>Technical Support</option>
@@ -137,17 +168,23 @@ export default function ContactPage() {
                       <label className="text-sm font-bold text-slate-400 ml-1">Message</label>
                       <textarea 
                         required
+                        name="message"
                         rows={5}
+                        value={form.message}
+                        onChange={handleChange}
                         placeholder="Tell us about your project..."
-                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#1D9E75]/50 transition-colors resize-none"
+                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-colors resize-none"
                       />
                     </div>
+                    {error && (
+                      <p className="text-sm text-red-400 font-medium">{error}</p>
+                    )}
                     <button 
                       type="submit" 
                       disabled={loading}
-                      className="w-full bg-[#1D9E75] hover:bg-[#168562] text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-[#1D9E75]/20 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-xl shadow-emerald-500/20 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {loading ? "Sending..." : "Send Message"}
+                      {loading ? "Transmitting..." : "Send Message"}
                       {!loading && <Send className="w-5 h-5" />}
                     </button>
                   </form>
@@ -160,5 +197,13 @@ export default function ContactPage() {
 
       <Footer />
     </main>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense>
+      <ContactContent />
+    </Suspense>
   );
 }

@@ -18,6 +18,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing siteId or sessionId" }, { status: 400 });
     }
 
+    if (!adminDb) {
+      console.error("Tracking failed: adminDb is null");
+      return NextResponse.json({ error: "Storage service unavailable" }, { status: 503 });
+    }
+
     // 1. Verify site exists
     const siteDoc = await adminDb.collection("sites").doc(siteId).get();
     if (!siteDoc.exists) {
@@ -26,19 +31,33 @@ export async function POST(req: NextRequest) {
 
     // 2. Log event
     const eventRef = adminDb
-        .collection("events")
+        .collection("sites")
         .doc(siteId)
         .collection("sessions")
         .doc(sessionId)
-        .collection("events");
+        .collection("session_events");
     
     await eventRef.add({
+      siteId,
       eventType,
       eventData,
       url,
       timestamp,
       visitorId
     });
+
+    // 2b. Log to flat collection for easier analysis (bypass collectionGroup index issues)
+    await adminDb
+      .collection("sites")
+      .doc(siteId)
+      .collection("all_events")
+      .add({
+        eventType,
+        eventData,
+        url,
+        timestamp,
+        visitorId
+      });
 
     // 3. Update Live Session
     const liveSessionRef = adminDb.collection("sessions").doc(siteId).collection("live").doc(sessionId);
@@ -48,7 +67,7 @@ export async function POST(req: NextRequest) {
     if (eventType === 'rage_click') signal = 'rage click';
     if (eventType === 'exit_intent') signal = 'exit intent';
     if (eventType === 'form_abandon') signal = 'form drop';
-    if (url && url.includes('success') || url.includes('thank-you')) signal = 'converted';
+    if (url && (url.includes('success') || url.includes('thank-you'))) signal = 'converted';
 
     const liveDoc = await liveSessionRef.get();
     let signals = liveDoc.exists ? liveDoc.data()?.signals || [] : [];

@@ -68,10 +68,28 @@ const INTEGRATIONS = [
 
 export default function IntegrationsPage() {
   const [requested, setRequested] = React.useState(false);
+  const [requestLoading, setRequestLoading] = React.useState(false);
+  const [activeCategory, setActiveCategory] = React.useState("All");
 
-  const handleRequest = () => {
-    setRequested(true);
-    setTimeout(() => setRequested(false), 3000);
+  const filtered = activeCategory === "All"
+    ? INTEGRATIONS
+    : INTEGRATIONS.filter(i => i.category === activeCategory);
+
+  const handleRequest = async () => {
+    setRequestLoading(true);
+    try {
+      await fetch("/api/integrations/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ integration: "custom", userId: "anonymous" }),
+      });
+      setRequested(true);
+      setTimeout(() => setRequested(false), 3000);
+    } catch (err) {
+      console.error("Request failed", err);
+    } finally {
+      setRequestLoading(false);
+    }
   };
 
   return (
@@ -94,16 +112,17 @@ export default function IntegrationsPage() {
               Plug and play.
             </h1>
             <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto mb-12">
-              Connect your favorite stack to SecondGuess in seconds. Our ready-made integrations ensure you capture every behavioral signal without code.
+              Connect your favorite stack to Forensiq in seconds. Our ready-made integrations ensure you capture every behavioral signal without code.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3">
               {CATEGORIES.map(cat => (
                 <button 
                   key={cat}
+                  onClick={() => setActiveCategory(cat)}
                   className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest border transition-all ${
-                    cat === "All"
-                    ? "bg-[#1D9E75] text-white border-[#1D9E75] shadow-xl shadow-[#1D9E75]/20"
+                    cat === activeCategory
+                    ? "bg-emerald-500 text-slate-950 border-emerald-500 shadow-xl shadow-emerald-500/20"
                     : "bg-slate-900/50 text-slate-500 border-slate-800 hover:text-slate-300 hover:border-slate-700"
                   }`}
                 >
@@ -118,7 +137,7 @@ export default function IntegrationsPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {INTEGRATIONS.map((app, i) => (
+            {filtered.map((app, i) => (
               <motion.div
                 key={app.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -151,15 +170,17 @@ export default function IntegrationsPage() {
                   {app.description}
                 </p>
 
-                <div className="flex items-center justify-between pt-6 border-t border-slate-800/50">
-                  <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest flex items-center gap-2">
-                     <div className="w-1.5 h-1.5 rounded-full bg-[#1D9E75]" />
-                     {app.status}
-                  </span>
-                  <Link href="/docs/installation" className="text-slate-500 hover:text-white transition-colors group/btn flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest">
-                     View Docs <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                  </Link>
-                </div>
+                  <div className="flex gap-4 pt-6 border-t border-slate-800/50">
+                    <Link 
+                      href="/settings?tab=integrations" 
+                      className="flex-1 bg-white/5 hover:bg-[#1D9E75] text-white py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-center transition-all border border-white/5 hover:border-[#1D9E75]"
+                    >
+                      Connect
+                    </Link>
+                    <Link href="/docs/installation" className="px-4 py-2.5 text-slate-500 hover:text-white transition-colors group/btn flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest border border-transparent hover:bg-white/5 rounded-xl">
+                       Docs <ExternalLink className="w-3 h-3 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </Link>
+                  </div>
               </motion.div>
             ))}
           </div>
@@ -182,7 +203,7 @@ export default function IntegrationsPage() {
            
            <button 
             onClick={handleRequest}
-            disabled={requested}
+            disabled={requested || requestLoading}
             className="relative z-10 bg-white text-slate-950 px-8 py-4 rounded-xl font-bold shadow-2xl transition-all hover:-translate-y-1 hover:bg-slate-100 flex items-center gap-4 disabled:opacity-50"
            >
               {requested ? (

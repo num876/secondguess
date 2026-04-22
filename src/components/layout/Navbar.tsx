@@ -9,6 +9,14 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+
+  const NAV_LINKS = [
+    { label: "Features", href: "/#features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Integrations", href: "/integrations" }
+  ];
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -16,28 +24,53 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-slate-950/80 backdrop-blur-md border-b border-slate-800 py-4" : "bg-transparent py-6"
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      scrolled ? "bg-slate-950/95 backdrop-blur-3xl border-b border-white/5 py-3 shadow-2xl" : "bg-transparent py-6"
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-[#1D9E75] rounded-xl flex items-center justify-center shadow-lg shadow-[#1D9E75]/20 ring-1 ring-[#1D9E75]/30 group-hover:scale-105 transition-transform">
-            <Layout className="w-6 h-6 text-white" />
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 flex items-center justify-center transition-transform group-hover:scale-110">
+            <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
+            <svg viewBox="0 0 24 24" className="w-full h-full relative" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3L2 21H22L12 3Z" className="stroke-emerald-400 stroke-[1.5]" />
+              <path d="M12 3V21" className="stroke-emerald-400/30 stroke-[1]" />
+              <path d="M7 12L17 12" className="stroke-emerald-400/30 stroke-[1]" />
+              <path d="M12 3L17 21" className="stroke-emerald-400/50 stroke-[1]" />
+              <path d="M12 3L7 21" className="stroke-emerald-400/50 stroke-[1]" />
+            </svg>
           </div>
-          <span className="text-2xl font-bold tracking-tight text-white">SecondGuess</span>
+          <span className="text-2xl font-black tracking-tighter text-white uppercase">Forensiq</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/#features" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Features</Link>
-          <Link href="/pricing" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Pricing</Link>
-          <Link href="/integrations" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Integrations</Link>
-          <Link href="/blog" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Blog</Link>
-          <div className="h-4 w-px bg-slate-800" />
-          <Link href="/login" className="text-white hover:text-[#1D9E75] transition-colors text-sm font-bold border-b border-transparent hover:border-[#1D9E75]/50">Log In</Link>
+        <div className="hidden md:flex items-center gap-10">
+          <div className="flex items-center gap-8 relative px-4 py-2 bg-white/5 rounded-full border border-white/5">
+            {NAV_LINKS.map((link) => (
+              <Link 
+                key={link.href}
+                href={link.href} 
+                onMouseEnter={() => setHoveredPath(link.href)}
+                onMouseLeave={() => setHoveredPath(null)}
+                className="relative text-slate-400 hover:text-white transition-colors text-[9px] font-black uppercase tracking-[0.2em] z-10"
+              >
+                {link.label}
+                {hoveredPath === link.href && (
+                  <motion.div
+                    layoutId="laser-nav"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
+          <div className="h-4 w-px bg-white/10" />
+          <Link href="/login" className="text-slate-400 hover:text-white transition-colors text-[9px] font-black uppercase tracking-[0.2em]">Log In</Link>
           <Link 
             href="/login" 
-            className="bg-[#1D9E75] hover:bg-[#168562] text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-[#1D9E75]/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
+            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
           >
             Get Started
           </Link>
@@ -56,14 +89,13 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full inset-x-0 bg-slate-900 border-b border-slate-800 p-6 flex flex-col gap-4 md:hidden backdrop-blur-xl"
+            className="absolute top-full inset-x-0 bg-slate-950 border-b border-white/5 p-8 flex flex-col gap-6 md:hidden backdrop-blur-3xl"
           >
-            <Link href="/#features" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-2 font-medium border-b border-slate-800/20">Features</Link>
-            <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-2 font-medium border-b border-slate-800/20">Pricing</Link>
-            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-2 font-medium border-b border-slate-800/20">Integrations</Link>
-            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-2 font-medium border-b border-slate-800/20">Blog</Link>
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-white py-2 font-bold">Log In</Link>
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="bg-[#1D9E75] text-white text-center py-3 rounded-xl font-bold">Get Started</Link>
+            <Link href="/#features" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Features</Link>
+            <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Pricing</Link>
+            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Integrations</Link>
+            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-white py-2 text-xs font-black uppercase tracking-widest">Log In</Link>
+            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="bg-emerald-500 text-slate-950 text-center py-4 rounded-full text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20">Get Started</Link>
           </motion.div>
         )}
       </AnimatePresence>

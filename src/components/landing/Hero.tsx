@@ -4,117 +4,179 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Layout } from "lucide-react";
-import { GhostCursors } from "@/components/auth/GhostCursors";
+import { InteractiveMesh } from "./InteractiveMesh";
 
 export const Hero = () => {
+  const [signals, setSignals] = React.useState<string[]>(["[02:14:01] CRITICAL: Rage Click detected", "[02:14:05] ALERT: Exit Intent captured"]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const mockSignals = [
+        `[${new Date().toLocaleTimeString()}] SIGNAL: 74% Scroll Depth achieved`,
+        `[${new Date().toLocaleTimeString()}] ALERT: Friction detected on Login`,
+        `[${new Date().toLocaleTimeString()}] EVENT: User #4291 converted`,
+        `[${new Date().toLocaleTimeString()}] CRITICAL: Rage Click (Pricing Page)`
+      ];
+      setSignals(prev => [mockSignals[Math.floor(Math.random() * mockSignals.length)], ...prev].slice(0, 3));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-[#020617]">
       {/* Background Layer */}
-      <div className="absolute inset-0 z-0">
-        <GhostCursors />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950" />
-      </div>
+      <InteractiveMesh />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/50 to-[#020617] pointer-events-none" />
 
       {/* Content Layer */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1D9E75]/10 border border-[#1D9E75]/20 text-[#1D9E75] text-sm font-bold mb-8 shadow-2xl shadow-[#1D9E75]/10"
-        >
-          <div className="w-2 h-2 rounded-full bg-[#1D9E75] animate-pulse" />
-          <span>v2.0 is now live: AI-Powered Rage Click Detection</span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-5xl md:text-8xl font-black text-white leading-[1.05] tracking-tighter mb-8"
-        >
-          See what they see.<br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D9E75] to-[#34D399] drop-shadow-[0_0_15px_rgba(29,158,117,0.3)]">
-            Know what they want.
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light mb-12"
-        >
-          Stop guessing why your customers leave. SecondGuess uses behavioral AI to replay sessions and flag conversion friction before it costs you money.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-6"
-        >
-          <Link
-            href="/login"
-            className="group relative bg-[#1D9E75] hover:bg-[#168562] text-white px-8 py-5 rounded-2xl text-lg font-bold shadow-2xl shadow-[#1D9E75]/30 transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        <div className="text-left">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10 shadow-2xl shadow-emerald-500/5"
           >
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-            <span className="flex items-center gap-2 relative z-10">
-              Start Tracking Free <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Link>
-          <Link
-            href="/contact?ref=demo"
-            className="flex items-center gap-3 text-white font-bold hover:text-slate-300 transition-colors px-6 py-5 group"
-          >
-            <div className="w-12 h-12 rounded-full border border-slate-700 flex items-center justify-center group-hover:border-[#1D9E75] group-hover:bg-[#1D9E75]/10 transition-all">
-              <Play className="w-5 h-5 fill-white group-hover:fill-[#1D9E75] group-hover:text-[#1D9E75]" />
-            </div>
-            See it in action
-          </Link>
-        </motion.div>
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>v2.0 Neural Engine Live</span>
+          </motion.div>
 
-        {/* Floating Mini Dash Preview */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-20 relative px-4"
-        >
-          <div className="absolute inset-x-0 -top-10 bottom-0 bg-[#1D9E75]/5 blur-[120px] rounded-full" />
-          <div className="relative bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-4 shadow-2xl max-w-4xl mx-auto ring-1 ring-white/10 group overflow-hidden">
-            <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-4">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/30" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/30" />
-                <div className="w-3 h-3 rounded-full bg-green-500/30" />
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl md:text-8xl font-black text-white leading-[0.95] tracking-tighter mb-8"
+          >
+            Uncover the <br/>
+            <span className="text-emerald-400">Hidden WHY.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-12"
+          >
+            Stop guessing why your customers leave. <span className="text-white font-bold">Forensiq</span> uses behavioral AI to replay sessions and flag conversion friction before it costs you revenue.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-wrap items-center gap-8"
+          >
+            <Link
+              href="/login"
+              className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-10 py-5 rounded-full text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
+            >
+              Start Free Forensic Audit
+            </Link>
+            <Link
+              href="/contact?ref=demo"
+              className="flex items-center gap-4 text-white font-black uppercase tracking-widest text-[10px] hover:text-emerald-400 transition-colors group"
+            >
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all">
+                <Play className="w-4 h-4 fill-white group-hover:fill-emerald-400 group-hover:text-emerald-400" />
               </div>
-              <div className="mx-auto bg-slate-800/50 px-3 py-1 rounded-lg text-[10px] text-slate-500 font-mono">
-                app.secondguess.io/live-session/v_8291
+              View Studio Demo
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Dynamic Visualization Side */}
+        <div className="relative">
+          {/* Live Signal Feed */}
+          <div className="absolute -top-12 -left-12 z-20 w-72 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl hidden md:block">
+             <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Signal Feed</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+             </div>
+             <div className="space-y-3">
+                {signals.map((s, i) => (
+                  <motion.div 
+                    key={s + i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-[9px] font-mono text-emerald-400/80 leading-tight"
+                  >
+                    {s}
+                  </motion.div>
+                ))}
+             </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative bg-slate-950 rounded-[2.5rem] border border-white/5 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/10 overflow-hidden group"
+          >
+            <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4 px-2">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
+              </div>
+              <div className="mx-auto bg-white/5 px-4 py-1.5 rounded-full text-[9px] text-slate-500 font-black tracking-widest uppercase">
+                forensiq.studio/live/v_8291
               </div>
             </div>
             
-            <div className="aspect-video bg-slate-950 rounded-xl flex items-center justify-center relative group-hover:ring-1 ring-[#1D9E75]/30 transition-all">
-               <div className="flex flex-col items-center gap-3">
-                 <Layout className="w-12 h-12 text-[#1D9E75] opacity-50" />
-                 <p className="text-slate-600 font-mono text-xs">Awaiting live activity...</p>
+            <div className="aspect-video bg-black rounded-[2rem] flex items-center justify-center relative border border-white/5 overflow-hidden">
+               {/* Grid background inside mock */}
+               <div className="absolute inset-0 bg-[url('/grid.svg')] bg-[length:30px_30px] opacity-[0.03]" />
+               
+               <div className="flex flex-col items-center gap-4 relative z-10">
+                 <Layout className="w-12 h-12 text-emerald-500 opacity-20" />
+                 <p className="text-slate-700 font-black uppercase tracking-[0.3em] text-[10px]">Awaiting Signal...</p>
                </div>
                
-               {/* Simulated cursor */}
+               {/* Upgraded simulated ghost cursor */}
                <motion.div
                  animate={{ 
-                   x: [0, 100, -50, 200, 0],
-                   y: [0, -50, 100, 50, 0]
+                   x: [0, 150, -100, 250, 0],
+                   y: [0, -80, 120, 40, 0]
                  }}
-                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                 className="absolute top-1/2 left-1/2"
+                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-1/2 left-1/2 group"
                >
-                 <ArrowRight className="w-5 h-5 text-white rotate-[135deg] drop-shadow-lg" />
-                 <div className="bg-[#1D9E75] text-[10px] font-bold px-2 py-0.5 rounded ml-4">Visitor #2901</div>
+                 <div className="relative">
+                    <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-30 rounded-full scale-150 animate-pulse" />
+                    <ArrowRight className="w-6 h-6 text-white rotate-[135deg] drop-shadow-2xl relative z-10" />
+                    <div className="absolute left-6 top-0 bg-emerald-500 text-[10px] font-black px-3 py-1 rounded-full whitespace-nowrap shadow-xl shadow-emerald-500/20 border border-white/20">
+                      Visitor #2901
+                    </div>
+                 </div>
                </motion.div>
+
+               {/* Simulated Friction Glow */}
+               <motion.div
+                 animate={{ opacity: [0, 0.4, 0], scale: [0.8, 1.2, 0.8] }}
+                 transition={{ duration: 3, repeat: Infinity, delay: 5 }}
+                 className="absolute top-1/3 right-1/4 w-32 h-32 bg-red-500 blur-[60px] rounded-full pointer-events-none"
+               />
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Floating Metric Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl"
+          >
+             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Health Score</p>
+             <div className="flex items-center gap-4">
+                <span className="text-3xl font-black text-emerald-400">98%</span>
+                <div className="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                   <div className="h-full bg-emerald-500 w-[98%]" />
+                </div>
+             </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

@@ -12,8 +12,17 @@ export async function POST(req: Request) {
     }
 
     // Basic Validation per provider
-    if (provider === 'shopify' && !config.shopUrl.includes('myshopify.com')) {
+    if (provider === 'shopify' && !config.shopUrl?.includes('myshopify.com')) {
       return NextResponse.json({ error: "Invalid Shopify Shop URL" }, { status: 400 });
+    }
+    if (provider === 'stripe' && !config.secretKey?.startsWith('sk_')) {
+      return NextResponse.json({ error: "Invalid Stripe Secret Key" }, { status: 400 });
+    }
+    if (provider === 'slack' && !config.webhookUrl?.startsWith('https://hooks.slack.com')) {
+      return NextResponse.json({ error: "Invalid Slack Webhook URL" }, { status: 400 });
+    }
+    if (provider === 'webflow' && !config.apiToken?.startsWith('wf_')) {
+      return NextResponse.json({ error: "Invalid Webflow API Token" }, { status: 400 });
     }
 
     // Encrypt sensitive config fields

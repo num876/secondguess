@@ -1,12 +1,16 @@
 (function() {
     // SecondGuess Tracker
     const script = document.currentScript;
-    const siteId = new URL(script.src).searchParams.get('siteId');
+    const scriptSrc = new URL(script.src);
+    const siteId = scriptSrc.searchParams.get('siteId');
     if (!siteId) return console.error('SecondGuess: siteId is missing');
 
     const STORAGE_KEY_VISITOR = 'sg_visitor_id';
     const STORAGE_KEY_SESSION = 'sg_session_id';
-    const TRACKING_ENDPOINT = '/api/track'; // Relative to the domain of the script
+    
+    // Determine the host of the tracker script to use as the base for API calls
+    const trackerHost = scriptSrc.origin;
+    const TRACKING_ENDPOINT = `${trackerHost}/api/track`;
 
     // Helper: UUID Generator
     function uuidv4() {

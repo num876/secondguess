@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthContextProvider } from "@/context/AuthContext";
+import { IntegrationProvider } from "@/context/IntegrationContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
@@ -14,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SecondGuess | Session Intelligence SaaS",
-  description: "Real-time session replay and AI drop-off insights for businesses.",
+  title: "FORENSIQ | Forensic Session Intelligence",
+  description: "Real-time user behavior analysis and AI-driven conversion forensic.",
 };
 
 export default function RootLayout({
@@ -26,11 +32,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         <AuthContextProvider>
-          {children}
+          <IntegrationProvider>
+            {children}
+          </IntegrationProvider>
         </AuthContextProvider>
       </body>
     </html>

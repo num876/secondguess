@@ -28,7 +28,7 @@ export const AIInsights = ({ siteId }: { siteId: string }) => {
         const list = Array.isArray(data.insights) ? data.insights : Object.values(data.insights)[0] || [];
         setInsights(Array.isArray(list) ? list.slice(0, 3) : []);
       } else {
-        setError("Could not generate insights. Please try again later.");
+        setError(data.error || "Could not generate insights. Please try again later.");
       }
     } catch (err) {
       setError("An error occurred while connecting to the AI engine.");
@@ -38,27 +38,29 @@ export const AIInsights = ({ siteId }: { siteId: string }) => {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-      <div className="p-8 border-b border-slate-50 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <Sparkles className="w-5 h-5 text-emerald-400" />
-            <h3 className="text-xl font-bold">AI Drop-off Insights</h3>
+    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden mt-8">
+      <div className="p-6 sm:p-8 border-b border-slate-50 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-5 h-5 text-emerald-400 shrink-0" />
+            <h3 className="text-lg sm:text-xl font-bold truncate">AI Drop-off Insights</h3>
           </div>
-          <p className="text-slate-400 text-sm">Claude parses your last 500 events to find hidden conversion killers.</p>
+          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-xl">
+            Claude parses your last 500 events to find hidden conversion killers and friction points in your funnel.
+          </p>
         </div>
         
         <button
           onClick={fetchInsights}
           disabled={loading || !siteId}
-          className="bg-[#1D9E75] hover:bg-[#168562] disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-emerald-900/40 shrink-0"
+          className="bg-[#1D9E75] hover:bg-[#168562] disabled:opacity-50 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-900/40 shrink-0 text-sm"
         >
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <>
-              Analyse drop-offs
-              <ArrowRight className="w-4 h-4" />
+              <span className="whitespace-nowrap">Analyse drop-offs</span>
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </>
           )}
         </button>

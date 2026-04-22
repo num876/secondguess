@@ -108,13 +108,18 @@ export default function LoginPage() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 mb-12 cursor-pointer"
+            className="flex items-center gap-3 mb-12 cursor-pointer"
             onClick={() => router.push("/")}
           >
-            <div className="w-12 h-12 bg-[#1D9E75] rounded-2xl flex items-center justify-center shadow-lg shadow-[#1D9E75]/20 ring-1 ring-[#1D9E75]/50 hover:scale-105 transition-transform">
-              <Layout className="w-7 h-7 text-white" />
+            <div className="relative w-12 h-12 flex items-center justify-center">
+              <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-30" />
+              <svg viewBox="0 0 24 24" className="w-full h-full relative" fill="none">
+                <path d="M12 3L2 21H22L12 3Z" className="stroke-emerald-400 stroke-[1.5]" />
+                <path d="M12 3V21" className="stroke-emerald-400/30 stroke-[1]" />
+                <path d="M7 12L17 12" className="stroke-emerald-400/30 stroke-[1]" />
+              </svg>
             </div>
-            <span className="text-3xl font-bold tracking-tight text-white">SecondGuess</span>
+            <span className="text-3xl font-black tracking-tighter text-white uppercase">Forensiq</span>
           </motion.div>
           
           <motion.div
@@ -123,11 +128,11 @@ export default function LoginPage() {
             transition={{ delay: 0.1 }}
           >
             <h1 className="text-6xl font-extrabold leading-[1.1] mb-8 tracking-tighter">
-              Stop guessing.<br/>
-              <span className="text-[#1D9E75] drop-shadow-[0_0_15px_rgba(29,158,117,0.3)]">Start knowing.</span>
+              Total Certainty.<br/>
+              <span className="text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">Zero Guessing.</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-md leading-relaxed font-light">
-              The world's first AI-powered session intelligence platform that tells you exactly why customers leave your site.
+              The forensic behavioral intelligence engine that tells you exactly why customers leave — and precisely how to fix it.
             </p>
           </motion.div>
         </div>
@@ -148,7 +153,7 @@ export default function LoginPage() {
             <MousePointer2 className="w-12 h-12 text-[#1D9E75]" />
           </div>
           <p className="text-slate-200 text-lg leading-relaxed italic mb-6 relative">
-            "SecondGuess helped us identify a critical form issue that was costing us £12k/month. The setup took less than 2 minutes."
+            "Forensiq helped us identify a critical form issue that was costing us £12k/month. The setup took less than 2 minutes."
           </p>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-bold">
@@ -167,11 +172,15 @@ export default function LoginPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1D9E75]/5 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="max-w-md w-full relative z-10">
-          <div className="lg:hidden flex items-center gap-2 mb-12">
-            <div className="w-10 h-10 bg-[#1D9E75] rounded-xl flex items-center justify-center shadow-lg shadow-[#1D9E75]/20">
-              <Layout className="w-6 h-6 text-white" />
+          <div className="lg:hidden flex items-center gap-3 mb-12">
+            <div className="relative w-10 h-10 flex items-center justify-center">
+              <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-20" />
+              <svg viewBox="0 0 24 24" className="w-full h-full relative" fill="none">
+                <path d="M12 3L2 21H22L12 3Z" className="stroke-emerald-400 stroke-[1.5]" />
+                <path d="M12 3V21" className="stroke-emerald-400/30 stroke-[1]" />
+              </svg>
             </div>
-            <span className="text-2xl font-bold tracking-tight text-white">SecondGuess</span>
+            <span className="text-2xl font-black tracking-tighter text-white uppercase">Forensiq</span>
           </div>
 
           <AnimatePresence mode="wait">
@@ -182,15 +191,15 @@ export default function LoginPage() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <h2 className="text-4xl font-bold text-white mb-3 tracking-tight">
-                {isResetMode ? "Reset Password" : isSignUp ? "Join SecondGuess" : "Welcome back"}
+              <h2 className="text-4xl font-black text-white mb-3 tracking-tighter">
+                {isResetMode ? "Reset Password" : isSignUp ? "Join Forensiq" : "Welcome back"}
               </h2>
               <p className="text-slate-400 mb-10 text-lg">
                 {isResetMode 
                     ? "Enter your email to receive a recovery link." 
                     : isSignUp 
-                        ? "Start capturing visitor insights today." 
-                        : "Access your real-time intelligence dashboard."}
+                        ? "Initialize your forensic intelligence workspace." 
+                        : "Access your real-time forensic dashboard."}
               </p>
             </motion.div>
           </AnimatePresence>

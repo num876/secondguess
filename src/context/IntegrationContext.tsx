@@ -51,7 +51,19 @@ export function IntegrationProvider({ children }: { children: React.ReactNode })
   const disconnectIntegration = async (provider: string) => {
     if (!userProfile?.siteId) return;
     try {
-      await deleteDoc(doc(db, "sites", userProfile.siteId, "integrations", provider));
+      const response = await fetch("/api/integrations/disconnect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          siteId: userProfile.siteId,
+          provider
+        })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to disconnect");
+      }
     } catch (err) {
       console.error("Disconnect Error:", err);
     }

@@ -70,6 +70,20 @@ export function ConnectModal({ isOpen, onClose, provider }: ConnectModalProps) {
         return [
           { key: "webhookUrl", label: "Incoming Webhook URL", placeholder: "https://hooks.slack.com/services/...", type: "text" }
         ];
+      case "webflow":
+        return [
+          { key: "apiToken", label: "API Token", placeholder: "wf_...", type: "password" },
+          { key: "siteId", label: "Site ID", placeholder: "60f...", type: "text" }
+        ];
+      case "segment":
+        return [
+          { key: "writeKey", label: "Write Key", placeholder: "...", type: "password" }
+        ];
+      case "wordpress":
+        return [
+          { key: "siteUrl", label: "WordPress Site URL", placeholder: "https://example.com", type: "text" },
+          { key: "apiKey", label: "Plugin Authorization Key", placeholder: "...", type: "password" }
+        ];
       default:
         return [
           { key: "apiKey", label: "API Key", placeholder: "Your API Key", type: "password" }
