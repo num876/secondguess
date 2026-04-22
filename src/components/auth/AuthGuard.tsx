@@ -16,8 +16,14 @@ export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
 
   if (loading || !user) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1D9E75]"></div>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#020617] gap-6">
+        <div className="relative">
+          <div className="absolute inset-0 bg-emerald-500/20 blur-2xl rounded-full" />
+          <div className="relative w-12 h-12 rounded-full border-2 border-white/5 border-t-emerald-500 animate-spin" />
+        </div>
+        <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.3em] animate-pulse">
+          Syncing Intelligence...
+        </p>
       </div>
     );
   }

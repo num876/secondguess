@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { onAuthStateChanged, User, signOut, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { auth, db, googleProvider, githubProvider } from "@/lib/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -39,6 +39,12 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const router = useRouter();
   const pathname = usePathname();
 
+  // Fix: use a ref for pathname so we don't re-subscribe onAuthStateChanged on every navigation
+  const pathnameRef = useRef(pathname);
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
+
   const syncProfile = async (firebaseUser: User) => {
     try {
       const userRef = doc(db, "users", firebaseUser.uid);
@@ -46,7 +52,6 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       
       if (userDoc.exists()) {
         const profile = userDoc.data();
-        // Fetch site data if siteId exists
         let siteData = {};
         if (profile.siteId) {
           const siteRef = doc(db, "sites", profile.siteId);
@@ -55,18 +60,26 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
             siteData = siteDoc.data();
           }
         }
-        
         const combinedProfile = { ...profile, ...siteData };
         setUserProfile(combinedProfile);
         return combinedProfile;
       } else {
+        // New user — check if a plan was stored before social auth
+        const pendingPlan = typeof window !== "undefined"
+          ? sessionStorage.getItem("forensiq_pending_plan")
+          : null;
+
         const newProfile = {
           email: firebaseUser.email,
           fullName: firebaseUser.displayName || "",
           createdAt: new Date().toISOString(),
           siteId: null,
+          plan: pendingPlan || "free",
         };
         await setDoc(userRef, newProfile);
+        if (pendingPlan && typeof window !== "undefined") {
+          sessionStorage.removeItem("forensiq_pending_plan");
+        }
         setUserProfile(newProfile);
         return newProfile;
       }
@@ -77,13 +90,14 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUser(user);
-        const profile = await syncProfile(user);
+    // Fix: stable subscription — no pathname in deps. Read pathname via ref inside.
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        const profile = await syncProfile(firebaseUser);
         
-        // Redirect logic
-        if (pathname === "/login") {
+        // Only redirect from the login page
+        if (pathnameRef.current === "/login") {
           if (profile && (profile as any).siteId) {
             router.push("/dashboard");
           } else {
@@ -93,7 +107,12 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       } else {
         setUser(null);
         setUserProfile(null);
-        if (pathname.startsWith("/dashboard") || pathname === "/setup" || pathname === "/settings") {
+        const current = pathnameRef.current;
+        if (
+          current.startsWith("/dashboard") ||
+          current === "/setup" ||
+          current === "/settings"
+        ) {
           router.push("/login");
         }
       }
@@ -101,7 +120,8 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     });
 
     return () => unsubscribe();
-  }, [pathname, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Intentionally empty — pathname read via ref
 
   const logout = async () => {
     await signOut(auth);
