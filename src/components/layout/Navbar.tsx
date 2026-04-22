@@ -51,7 +51,7 @@ export const Navbar = () => {
                 href={link.href} 
                 onMouseEnter={() => setHoveredPath(link.href)}
                 onMouseLeave={() => setHoveredPath(null)}
-                className="relative text-slate-400 hover:text-white transition-colors text-[9px] font-black uppercase tracking-[0.2em] z-10"
+                className="relative text-slate-400 hover:text-white transition-colors text-sm font-black uppercase tracking-wider z-10"
               >
                 {link.label}
                 {hoveredPath === link.href && (
@@ -67,18 +67,23 @@ export const Navbar = () => {
             ))}
           </div>
           <div className="h-4 w-px bg-white/10" />
-          <Link href="/login" className="text-slate-400 hover:text-white transition-colors text-[9px] font-black uppercase tracking-[0.2em]">Log In</Link>
+          <Link href="/login" className="text-slate-400 hover:text-white transition-colors text-sm font-black uppercase tracking-wider">Log In</Link>
           <Link 
             href="/login" 
-            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
+            className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3 rounded-full text-sm font-black uppercase tracking-wider shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95]"
           >
             Get Started
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X /> : <Menu />}
+        <button 
+          className="md:hidden text-white p-2 touch-target hover:bg-white/10 rounded-lg transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -89,13 +94,43 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full inset-x-0 bg-slate-950 border-b border-white/5 p-8 flex flex-col gap-6 md:hidden backdrop-blur-3xl"
+            className="absolute top-full inset-x-0 bg-slate-950 border-b border-white/5 p-4 sm:p-8 flex flex-col gap-4 md:hidden backdrop-blur-3xl max-h-[calc(100vh-80px)] overflow-y-auto"
           >
-            <Link href="/#features" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Features</Link>
-            <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Pricing</Link>
-            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 py-2 text-xs font-black uppercase tracking-widest border-b border-white/5">Integrations</Link>
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-white py-2 text-xs font-black uppercase tracking-widest">Log In</Link>
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="bg-emerald-500 text-slate-950 text-center py-4 rounded-full text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20">Get Started</Link>
+            <Link 
+              href="/#features" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="text-slate-400 hover:text-white py-3 px-4 text-sm font-black uppercase tracking-wider border-b border-white/5 transition-colors touch-target"
+            >
+              Features
+            </Link>
+            <Link 
+              href="/pricing" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="text-slate-400 hover:text-white py-3 px-4 text-sm font-black uppercase tracking-wider border-b border-white/5 transition-colors touch-target"
+            >
+              Pricing
+            </Link>
+            <Link 
+              href="/integrations" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="text-slate-400 hover:text-white py-3 px-4 text-sm font-black uppercase tracking-wider border-b border-white/5 transition-colors touch-target"
+            >
+              Integrations
+            </Link>
+            <Link 
+              href="/login" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="text-white py-3 px-4 text-sm font-black uppercase tracking-wider transition-colors touch-target"
+            >
+              Log In
+            </Link>
+            <Link 
+              href="/login" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-center py-4 px-4 rounded-full text-sm font-black uppercase tracking-wider shadow-2xl shadow-emerald-500/20 transition-all touch-target"
+            >
+              Get Started
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
