@@ -5,6 +5,28 @@
   --foreground: #020617;
   --brand-primary: #10b981;
   --brand-secondary: #059669;
+  
+  /* Mobile-First Type Scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+  
+  /* Line Height Scale */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 1.75;
+  
+  /* Spacing Scale */
+  --spacing-unit: 4px;
 }
 
 @theme inline {
@@ -12,14 +34,65 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-outfit), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Extended breakpoints for mobile-first design */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 }
 
 /* Base Styles */
+html {
+  /* Enable smooth scrolling and improve accessibility */
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f8fafc; /* slate-50 */
   color: #020617; /* slate-950 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Ensure minimum text size for readability (WCAG AA) */
+p, span, li, label, button, a {
+  font-size: clamp(12px, 1rem, 18px);
+  line-height: var(--line-height-normal);
+}
+
+/* Touch-friendly minimum target size (44x44px) */
+@layer components {
+  .touch-target {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+  
+  /* Mobile-first responsive utilities */
+  .h-screen-mobile {
+    height: 100svh;
+  }
+  
+  /* Safe area insets for notched devices */
+  .p-safe {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }
 
 .dark-mesh {
@@ -71,4 +144,102 @@ body {
 
 .animate-fade-up {
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile-optimized animations - disabled on reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .animate-slide-left {
+    animation: slideInFromLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .animate-slide-right {
+    animation: slideInFromRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Responsive Typography Scale */
+@media screen and (max-width: 374px) {
+  /* Extra small devices (< 375px) - reduce sizes slightly */
+  body { font-size: 15px; }
+}
+
+@media screen and (min-width: 375px) and (max-width: 639px) {
+  /* Small mobile devices (375px - 640px) */
+  h1 { font-size: var(--text-3xl); line-height: var(--line-height-tight); }
+  h2 { font-size: var(--text-2xl); line-height: var(--line-height-snug); }
+  h3 { font-size: var(--text-xl); line-height: var(--line-height-snug); }
+  h4, h5, h6 { font-size: var(--text-lg); }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  /* Tablets - portrait (640px - 768px) */
+  h1 { font-size: var(--text-4xl); }
+  h2 { font-size: var(--text-3xl); }
+  h3 { font-size: var(--text-2xl); }
+}
+
+@media screen and (min-width: 768px) {
+  /* Tablets - landscape and desktops (768px+) */
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-4xl); }
+  h3 { font-size: var(--text-3xl); }
+}
+
+/* Mobile-specific layout utilities */
+@layer utilities {
+  /* Remove tap highlight on mobile */
+  .mobile-tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Mobile safe area support */
+  .pl-safe {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .pr-safe {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  
+  .pt-safe {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  /* Prevent overflow on small screens */
+  .overflow-x-safe {
+    overflow-x: hidden;
+  }
+  
+  /* Focus indicator for accessibility */
+  .focus-ring {
+    outline: none;
+    ring-width: 2px;
+    ring-color: rgb(16, 185, 129);
+  }
+  
+  /* Mobile-friendly button sizes */
+  .btn-mobile {
+    padding: 0.75rem 1rem;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+  
+  /* Ensure text never goes below minimum readable size */
+  .text-readable {
+    font-size: clamp(0.875rem, 1rem, 1rem);
+  }
 }

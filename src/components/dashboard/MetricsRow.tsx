@@ -45,17 +45,17 @@ export const MetricsRow = ({ stats }: MetricsRowProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
       {cards.map((card, idx) => (
-        <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between mb-4">
-            <div className={`p-3 rounded-2xl ${card.bg}`}>
-              <card.icon className={`w-6 h-6 ${card.color}`} />
+        <div key={idx} className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl ${card.bg}`}>
+              <card.icon className={`w-5 sm:w-6 h-5 sm:h-6 ${card.color}`} />
             </div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">vs Last Week</span>
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider text-right">vs Last Week</span>
           </div>
-          <p className="text-3xl font-bold text-slate-900 mb-1">{card.value}</p>
-          <p className="text-sm font-medium text-slate-500">{card.label}</p>
+          <p className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1 truncate">{card.value}</p>
+          <p className="text-xs sm:text-sm font-medium text-slate-500 line-clamp-2">{card.label}</p>
         </div>
       ))}
     </div>

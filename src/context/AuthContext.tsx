@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { onAuthStateChanged, User, signOut, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
-import { auth, db, googleProvider, githubProvider } from "@/lib/firebase";
+import { auth, db, googleProvider, githubProvider, isConfigValid } from "@/lib/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -35,7 +35,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!isConfigValid()); // Start not loading if Firebase not configured
   const router = useRouter();
   const pathname = usePathname();
 
@@ -46,6 +46,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   }, [pathname]);
 
   const syncProfile = async (firebaseUser: User) => {
+    if (!db) return null;
     try {
       const userRef = doc(db, "users", firebaseUser.uid);
       const userDoc = await getDoc(userRef);
@@ -90,6 +91,12 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   };
 
   useEffect(() => {
+    // Don't try to listen to auth if Firebase isn't configured
+    if (!auth || !isConfigValid()) {
+      setLoading(false);
+      return;
+    }
+
     // Fix: stable subscription — no pathname in deps. Read pathname via ref inside.
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
@@ -124,11 +131,16 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   }, []); // Intentionally empty — pathname read via ref
 
   const logout = async () => {
-    await signOut(auth);
+    if (auth) {
+      await signOut(auth);
+    }
     router.push("/login");
   };
 
   const signInWithGoogle = async () => {
+    if (!auth || !googleProvider) {
+      throw new Error("Firebase not configured");
+    }
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (error) {
@@ -138,6 +150,9 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   };
 
   const signInWithGithub = async () => {
+    if (!auth || !githubProvider) {
+      throw new Error("Firebase not configured");
+    }
     try {
       await signInWithPopup(auth, githubProvider);
     } catch (error) {
@@ -147,18 +162,19 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   };
 
   const resetPassword = async (email: string) => {
+    if (!auth) throw new Error("Firebase not configured");
     await sendPasswordResetEmail(auth, email);
   };
 
   const updateProfile = async (data: any) => {
-    if (!user) return;
+    if (!user || !db) return;
     const userRef = doc(db, "users", user.uid);
     await setDoc(userRef, data, { merge: true });
     setUserProfile((prev: any) => ({ ...prev, ...data }));
   };
 
   const updateSiteConfig = async (data: any) => {
-    if (!userProfile?.siteId) return;
+    if (!userProfile?.siteId || !db) return;
     const siteRef = doc(db, "sites", userProfile.siteId);
     await setDoc(siteRef, data, { merge: true });
     setUserProfile((prev: any) => ({ ...prev, ...data }));
