@@ -2,10 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { adminDb } from "@/lib/firebase-admin";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-03-25.dahlia",
-});
-
 export async function POST(req: NextRequest) {
   try {
     const { userId } = await req.json();
@@ -17,6 +13,14 @@ export async function POST(req: NextRequest) {
     if (!adminDb) {
       return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
     }
+
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json({ error: "Billing not configured" }, { status: 503 });
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2026-03-25.dahlia" as any,
+    });
 
     // Get the user's Stripe customer ID from Firestore
     const userDoc = await adminDb.collection("users").doc(userId).get();

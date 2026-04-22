@@ -4,7 +4,7 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
-import { Search, Tag, Calendar, User, ArrowRight } from "lucide-react";
+import { Search, Tag, Calendar, User, ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
 const CATEGORIES = ["All", "Product Updates", "CRO Tips", "Engineering", "Case Studies"];

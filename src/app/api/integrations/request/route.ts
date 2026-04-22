@@ -10,6 +10,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    if (!adminDb) {
+      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+    }
+
     await adminDb.collection("integration_requests").add({
       integration,
       userId,

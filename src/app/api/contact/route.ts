@@ -11,6 +11,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Store the message in Firestore
+    if (!adminDb) {
+      throw new Error("Firebase Admin not initialised — check FIREBASE_ADMIN_SERVICE_ACCOUNT env var.");
+    }
     await adminDb.collection("contact_submissions").add({
       name,
       email,
