@@ -13,7 +13,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-40 pb-24 overflow-hidden text-center mx-auto max-w-4xl px-6">
+      <section className="relative pt-32 pb-20 overflow-hidden text-center mx-auto max-w-4xl px-6">
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <GhostCursors />
         </div>
@@ -32,7 +32,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-slate-950">
+      <section className="py-20 bg-slate-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: i * 0.1 }}
                 className="text-center group"
               >
@@ -72,14 +72,14 @@ export default function AboutPage() {
       </section>
 
       {/* Narrative Section */}
-      <section className="py-24 bg-slate-900/30 border-y border-slate-900 overflow-hidden">
+      <section className="py-20 bg-slate-900/30 border-y border-slate-900 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
                <div className="absolute -inset-10 bg-emerald-500/10 blur-[100px] rounded-full" />
                <motion.div 
                  initial={{ opacity: 0, scale: 0.95 }}
                  whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true, amount: 0.2 }}
+                 viewport={{ once: true, amount: 0.1 }}
                  className="relative p-1 bg-gradient-to-br from-emerald-500/30 to-transparent rounded-[32px]"
                >
                  <div className="bg-slate-950 rounded-[28px] p-8 aspect-video flex flex-col justify-between">
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
             >
                <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-8 leading-[1.1]">
                  The next generation of <br/><span className="text-emerald-500">product empathy.</span>
@@ -132,7 +132,7 @@ export default function AboutPage() {
       </section>
 
       {/* Global Impact */}
-      <section className="py-24 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             {[

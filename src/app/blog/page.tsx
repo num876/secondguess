@@ -75,7 +75,7 @@ export default function BlogPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-slate-900">
+      <section className="pt-24 pb-16 border-b border-slate-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
             <div>
@@ -191,7 +191,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-24 px-6 border-t border-slate-900 bg-slate-950">
+      <section className="py-20 px-6 border-t border-slate-900 bg-slate-950">
         <div className="max-w-4xl mx-auto p-12 rounded-[40px] bg-slate-900/50 border border-slate-800 text-center relative overflow-hidden">
           <div className="relative z-10">
             {subscribed ? (

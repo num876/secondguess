@@ -10,7 +10,7 @@ export default function TermsPage() {
     <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30">
       <Navbar />
       
-      <div className="pt-32 pb-24 max-w-4xl mx-auto px-6">
+      <div className="pt-24 pb-20 max-w-4xl mx-auto px-6">
         <div className="mb-16">
           <div className="flex items-center gap-2 text-[#1D9E75] font-bold uppercase tracking-widest text-sm mb-4">
             <Scale className="w-4 h-4" />
