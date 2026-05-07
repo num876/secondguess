@@ -33,7 +33,7 @@ export const GhostCursors = () => {
     resize();
 
     // Initialize random cursors
-    const colors = ["#1D9E75", "#168562", "#34D399"];
+    const colors = ["#10B981", "#059669", "#34D399"];
     for (let i = 0; i < 12; i++) {
       cursorsRef.current.push({
         x: Math.random() * canvas.width,

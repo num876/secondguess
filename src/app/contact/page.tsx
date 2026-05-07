@@ -43,11 +43,11 @@ function ContactContent() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30 overflow-x-hidden">
+    <main className="min-h-screen bg-slate-950 selection:bg-emerald-500/30 overflow-x-hidden">
       <Navbar />
 
-      <section className="relative pt-40 pb-32">
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#1D9E75]/5 to-transparent pointer-events-none" />
+      <section className="relative pt-40 pb-20">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-emerald-500/5 to-transparent pointer-events-none" />
         <div className="absolute inset-x-0 h-px top-20 bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -58,7 +58,7 @@ function ContactContent() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1D9E75]/10 border border-[#1D9E75]/20 text-[#1D9E75] text-xs font-bold mb-6 uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6 uppercase tracking-widest">
                 <MessageSquare className="w-3 x-3" />
                 <span>Get in Touch</span>
               </div>
@@ -73,8 +73,8 @@ function ContactContent() {
                  {[
                    { icon: LifeBuoy, title: "Support", desc: "Technical issues and account help.", link: "/docs/installation" },
                    { icon: BookOpen, title: "Knowledge", desc: "Read our comprehensive guides.", link: "/docs/installation" },
-                   { icon: Activity, title: "Status", desc: "Check real-time system health.", link: "https://status.secondguess.io" },
-                   { icon: Mail, title: "Email", desc: "support@secondguess.io", link: "mailto:support@secondguess.io" }
+                   { icon: Activity, title: "Status", desc: "Check real-time system health.", link: "https://status.forensiq.io" },
+                   { icon: Mail, title: "Email", desc: "support@forensiq.io", link: "mailto:support@forensiq.io" }
                  ].map((item, i) => (
                    <Link 
                      key={i} 
@@ -96,7 +96,7 @@ function ContactContent() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-[#1D9E75]/10 blur-[100px] rounded-full -z-10" />
+              <div className="absolute inset-0 bg-emerald-500/10 blur-[100px] rounded-full -z-10" />
               <div className="p-8 md:p-12 rounded-[32px] bg-slate-900/80 backdrop-blur-xl border border-slate-800 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-5">
                    <Send className="w-32 h-32 text-white" />
@@ -108,8 +108,8 @@ function ContactContent() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12"
                   >
-                    <div className="w-20 h-20 bg-[#1D9E75]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                       <CheckCircle2 className="w-10 h-10 text-[#1D9E75]" />
+                    <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                       <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                     </div>
                     <h2 className="text-3xl font-bold text-white mb-4">Message Sent!</h2>
                     <p className="text-slate-400 mb-8 max-w-sm mx-auto font-light">

@@ -94,19 +94,19 @@ export default function IntegrationsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30 overflow-x-hidden">
+    <main className="min-h-screen bg-slate-950 selection:bg-emerald-500/30 overflow-x-hidden">
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-40 pb-20 overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-[#1D9E75]/5 blur-[120px] rounded-full translate-y-[-50%] pointer-events-none" />
+      <section className="relative pt-24 pb-16 overflow-hidden">
+        <div className="absolute inset-0 z-0 bg-emerald-500/5 blur-[120px] rounded-full translate-y-[-50%] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs font-bold mb-8 uppercase tracking-widest"
             >
-              <Puzzle className="w-4 h-4 text-[#1D9E75]" />
+              <Puzzle className="w-4 h-4 text-emerald-500" />
               <span>Extend SecondGuess Intelligence</span>
             </motion.div>
             <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
@@ -135,7 +135,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((app, i) => (
@@ -143,9 +143,9 @@ export default function IntegrationsPage() {
                 key={app.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-8 rounded-[32px] bg-slate-900/30 border border-slate-800 hover:border-[#1D9E75]/30 hover:bg-slate-900/50 transition-all"
+                className="group relative p-8 rounded-[32px] bg-slate-900/30 border border-slate-800 hover:border-emerald-500/30 hover:bg-slate-900/50 transition-all"
               >
                 <div className="flex items-start justify-between mb-8">
                   <div 
@@ -163,7 +163,7 @@ export default function IntegrationsPage() {
                      </div>
                   </div>
                   {app.featured && (
-                    <div className="px-3 py-1 bg-[#1D9E75]/10 border border-[#1D9E75]/20 rounded-full text-[#1D9E75] text-[10px] font-bold uppercase tracking-widest">
+                    <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
                       Featured
                     </div>
                   )}
@@ -177,7 +177,7 @@ export default function IntegrationsPage() {
                   <div className="flex gap-4 pt-6 border-t border-slate-800/50">
                     <Link 
                       href="/settings?tab=integrations" 
-                      className="flex-1 bg-white/5 hover:bg-[#1D9E75] text-white py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-center transition-all border border-white/5 hover:border-[#1D9E75]"
+                      className="flex-1 bg-white/5 hover:bg-emerald-500 text-white py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-center transition-all border border-white/5 hover:border-emerald-500"
                     >
                       Connect
                     </Link>
@@ -192,7 +192,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Request Integration */}
-      <section className="py-24 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto p-12 rounded-[40px] bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               <Puzzle className="w-48 h-48 text-white rotate-12" />
@@ -211,7 +211,7 @@ export default function IntegrationsPage() {
             className="relative z-10 bg-white text-slate-950 px-8 py-4 rounded-xl font-bold shadow-2xl transition-all hover:-translate-y-1 hover:bg-slate-100 flex items-center gap-4 disabled:opacity-50"
            >
               {requested ? (
-                <>Request Sent! <CheckCircle2 className="w-4 h-4 text-[#1D9E75]" /></>
+                <>Request Sent! <CheckCircle2 className="w-4 h-4 text-emerald-500" /></>
               ) : (
                 <>Request Integration <Zap className="w-4 h-4 fill-slate-950" /></>
               )}
@@ -220,9 +220,9 @@ export default function IntegrationsPage() {
       </section>
 
       {/* SDK Section */}
-      <section className="py-32 bg-slate-950 flex flex-col items-center text-center px-6">
-        <div className="w-16 h-16 rounded-full bg-[#1D9E75]/10 flex items-center justify-center mb-8">
-           <Puzzle className="w-8 h-8 text-[#1D9E75]" />
+      <section className="py-20 bg-slate-950 flex flex-col items-center text-center px-6">
+        <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-8">
+           <Puzzle className="w-8 h-8 text-emerald-500" />
         </div>
         <h2 className="text-4xl font-black text-white tracking-tighter mb-6">Build your own.</h2>
         <p className="text-slate-500 max-w-xl mx-auto mb-10 font-light text-lg">

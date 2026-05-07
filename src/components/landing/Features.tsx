@@ -14,8 +14,8 @@ const FEATURES = [
   {
     icon: Target,
     title: "Conversion Mapping",
-    description: "Visualize the exact paths high-value users take before reaching your goal events.",
-    color: "#1D9E75"
+    description: "Track every step of your conversion funnel and see exactly where users drop off.",
+    color: "#10B981"
   },
   {
     icon: Eye,
@@ -45,7 +45,7 @@ const FEATURES = [
 
 export const Features = () => {
   return (
-    <section id="features" className="py-32 bg-[#020617] relative overflow-hidden dark-mesh">
+    <section id="features" className="py-20 bg-[#020617] relative overflow-hidden dark-mesh">
       <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -53,7 +53,7 @@ export const Features = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6"
           >
             Capabilities
@@ -61,7 +61,7 @@ export const Features = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6 leading-[0.95]"
           >
             Forensic Depth. <br/><span className="text-emerald-400">Total Clarity.</span>
@@ -69,7 +69,7 @@ export const Features = () => {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-400 font-medium max-w-2xl mx-auto"
           >
@@ -83,15 +83,13 @@ export const Features = () => {
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ 
                 y: -10,
-                rotateX: 5,
-                rotateY: 5,
                 transition: { duration: 0.3 }
               }}
-              className="group glass-card-dark rounded-[2.5rem] p-10 border border-white/5 transition-all hover:border-emerald-500/30 relative overflow-hidden perspective-1000"
+              className="group glass-card-dark bg-slate-800/40 rounded-[2.5rem] p-10 border border-white/5 transition-all hover:border-emerald-500/30 relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
@@ -103,8 +101,11 @@ export const Features = () => {
                 <div className="absolute inset-0 bg-current blur-2xl opacity-20" />
               </div>
               
-              <h3 className="text-2xl font-black text-white mb-4 tracking-tight uppercase text-xs">{feature.title}</h3>
-              <p className="text-slate-400 leading-relaxed font-medium text-sm">{feature.description}</p>
+              <h3 className="text-xl font-black text-white mb-4 tracking-tight uppercase">{feature.title}</h3>
+              <p className="text-slate-300 leading-relaxed font-medium text-sm">{feature.description}</p>
+              
+              {/* Green Underline on Hover */}
+              <div className="absolute bottom-0 left-0 h-1 bg-emerald-500 w-0 group-hover:w-full transition-all duration-500" />
             </motion.div>
           ))}
         </div>

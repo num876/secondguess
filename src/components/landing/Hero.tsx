@@ -46,10 +46,10 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight lg:leading-[0.95] tracking-tighter mb-6 sm:mb-8"
+            className="text-[clamp(2.5rem,8vw,4.5rem)] font-black text-white leading-tight mb-8"
           >
             Uncover the <br/>
-            <span className="text-emerald-400">Hidden WHY.</span>
+            <span className="text-emerald-500">Hidden WHY.</span>
           </motion.h1>
 
           <motion.p
@@ -58,7 +58,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
           >
-            Stop guessing why your customers leave. <span className="text-white font-bold">Forensiq</span> uses behavioral AI to replay sessions and flag conversion friction before it costs you revenue.
+            Forensiq replays every session, flags the exact moment users get stuck, and tells you what to fix — in 30 seconds.
           </motion.p>
 
           <motion.div
@@ -112,7 +112,7 @@ export const Hero = () => {
             initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative bg-slate-950 rounded-[2.5rem] border border-white/5 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/10 overflow-hidden group"
+            className="relative bg-slate-950 rounded-[2.5rem] border border-emerald-500/15 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.05)] ring-1 ring-white/10 overflow-hidden group"
           >
             <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4 px-2">
               <div className="flex gap-1.5">
@@ -130,7 +130,16 @@ export const Hero = () => {
                <div className="absolute inset-0 bg-[url('/grid.svg')] bg-[length:30px_30px] opacity-[0.03]" />
                
                <div className="flex flex-col items-center gap-4 relative z-10">
-                 <Layout className="w-12 h-12 text-emerald-500 opacity-20" />
+                 <div className="relative w-12 h-12 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-20" />
+                    <svg viewBox="0 0 24 24" className="w-full h-full relative" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3L2 21H22L12 3Z" className="stroke-emerald-400 stroke-[1.5]" />
+                      <path d="M12 3V21" className="stroke-emerald-400/30 stroke-[1]" />
+                      <path d="M7 12L17 12" className="stroke-emerald-400/30 stroke-[1]" />
+                      <path d="M12 3L17 21" className="stroke-emerald-400/50 stroke-[1]" />
+                      <path d="M12 3L7 21" className="stroke-emerald-400/50 stroke-[1]" />
+                    </svg>
+                 </div>
                  <p className="text-slate-700 font-black uppercase tracking-wider text-xs">Awaiting Signal...</p>
                </div>
                

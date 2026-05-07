@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       
       {/* Infinite Logo Marquee */}
-      <section className="py-24 bg-[#020617] border-y border-white/5 relative overflow-hidden">
+      <section className="py-20 bg-[#020617] border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <p className="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
@@ -44,12 +44,12 @@ export default function Home() {
       </section>
 
       {/* The Forensic Process */}
-      <section className="py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="mb-24"
           >
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">The Forensic <span className="text-emerald-400">Workflow.</span></h2>
@@ -69,7 +69,7 @@ export default function Home() {
                  key={i}
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
+                 viewport={{ once: true, amount: 0.1 }}
                  transition={{ delay: i * 0.2 }}
                  className="relative group"
                >
@@ -87,7 +87,7 @@ export default function Home() {
       <Features />
 
       {/* Founder / About Section */}
-      <section className="py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none translate-x-1/2" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -96,7 +96,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               className="relative group"
             >
               <div className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] max-w-md mx-auto lg:mx-0">
@@ -134,7 +134,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10"
               >
                 Director's Memo
@@ -143,7 +143,7 @@ export default function Home() {
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[1.1]"
               >
@@ -153,7 +153,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: 0.2 }}
                 className="glass-card-dark rounded-[2.5rem] p-10 border border-white/10 relative overflow-hidden"
               >
@@ -171,6 +171,7 @@ export default function Home() {
                         src="/founder_portrait_1776861054849.png" 
                         alt="Numayr Signature" 
                         fill
+                        sizes="(max-width: 768px) 100vw, 64px"
                         className="object-cover" 
                       />
                    </div>
@@ -186,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* Ecosystem / Integrations Teaser */}
-      <section className="py-32 bg-[#020617] border-y border-white/5 relative overflow-hidden">
+      <section className="py-20 bg-[#020617] border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -209,13 +210,13 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-32 bg-[#020617] relative overflow-hidden">
+      <section id="pricing" className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
           </motion.div>
@@ -223,7 +224,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.2 }}
             className="group glass-card-dark rounded-[3rem] p-10 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden"
           >
@@ -268,7 +269,7 @@ export default function Home() {
       </section>
 
       {/* Forensic FAQ */}
-      <section className="py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
            <h2 className="text-3xl font-black text-white tracking-tighter mb-16 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
            <div className="space-y-6">
@@ -287,7 +288,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-40 bg-[#020617] overflow-hidden relative">
+      <section className="py-20 bg-[#020617] overflow-hidden relative">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] rounded-full translate-y-1/2" />
         
         {/* Refractive Sphere */}
@@ -302,27 +303,19 @@ export default function Home() {
         />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <h2 
               className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-12 leading-[1.05]"
             >
               Ready to stop <br/><span className="text-emerald-400">Guessing?</span>
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
+            </h2>
+            <div>
               <Link href="/login" className="inline-block group">
                 <button className="relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-12 py-7 rounded-full text-sm font-black uppercase tracking-[0.3em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] overflow-hidden">
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                   Initialize Forensic Audit
                 </button>
               </Link>
-            </motion.div>
+            </div>
         </div>
       </section>
 

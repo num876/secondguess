@@ -51,8 +51,8 @@ html {
 }
 
 body {
-  background-color: #f8fafc; /* slate-50 */
-  color: #020617; /* slate-950 */
+  background-color: #020617 !important;
+  color: #f8fafc; /* slate-50 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -70,7 +70,7 @@ body {
 }
 
 /* Ensure minimum text size for readability (WCAG AA) */
-p, span, li, label, button, a {
+p, li, label, button, a {
   font-size: clamp(12px, 1rem, 18px);
   line-height: var(--line-height-normal);
 }

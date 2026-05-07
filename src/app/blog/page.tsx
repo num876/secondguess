@@ -71,11 +71,11 @@ export default function BlogPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30">
+    <main className="min-h-screen bg-slate-950 selection:bg-emerald-500/30">
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 border-b border-slate-900">
+      <section className="pt-32 pb-16 border-b border-slate-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
             <div>
@@ -88,11 +88,11 @@ export default function BlogPage() {
             </div>
             
             <div className="relative group max-w-sm w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#1D9E75] transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-emerald-500 transition-colors" />
               <input 
                 type="text" 
                 placeholder="Search articles..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-[#1D9E75]/20 focus:border-[#1D9E75]/50 transition-all"
+                className="w-full bg-slate-900 border border-slate-800 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all"
               />
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
                   activeCategory === cat 
-                  ? "bg-[#1D9E75] text-white border-[#1D9E75] shadow-lg shadow-[#1D9E75]/20" 
+                  ? "bg-emerald-500 text-white border-emerald-500 shadow-lg shadow-emerald-500/20" 
                   : "bg-transparent text-slate-500 border-slate-800 hover:border-slate-700 hover:text-slate-300"
                 }`}
               >
@@ -129,7 +129,7 @@ export default function BlogPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-2xl">
-                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1D9E75] text-white text-[10px] font-bold uppercase tracking-widest mb-6">
+                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-widest mb-6">
                      Featured
                    </div>
                    <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6 leading-[1.1]">
@@ -162,14 +162,14 @@ export default function BlogPage() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-[#1D9E75]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute top-4 left-4">
                        <span className="px-3 py-1 bg-slate-950/80 backdrop-blur-md rounded-lg text-[10px] font-bold text-white uppercase tracking-widest">
                          {post.category}
                        </span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-[#1D9E75] transition-colors leading-snug">
+                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-emerald-500 transition-colors leading-snug">
                     {post.title}
                   </h3>
                   <p className="text-slate-500 font-light line-clamp-2 mb-6">
@@ -177,7 +177,7 @@ export default function BlogPage() {
                   </p>
                   <div className="flex items-center gap-4 text-xs font-bold text-slate-600 uppercase tracking-widest">
                     <div className="flex items-center gap-1.5">
-                       <Calendar className="w-3.5 h-3.5 text-[#1D9E75]" />
+                       <Calendar className="w-3.5 h-3.5 text-emerald-500" />
                        <span>{post.date}</span>
                     </div>
                     <span>•</span>
@@ -196,8 +196,8 @@ export default function BlogPage() {
           <div className="relative z-10">
             {subscribed ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-                <div className="w-16 h-16 bg-[#1D9E75]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                   <CheckCircle2 className="w-8 h-8 text-[#1D9E75] bg-transparent" />
+                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                   <CheckCircle2 className="w-8 h-8 text-emerald-500 bg-transparent" />
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-2">You're on the list!</h2>
                 <p className="text-slate-500">Welcome to the future of behavioral intelligence.</p>
@@ -215,9 +215,9 @@ export default function BlogPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#1D9E75]/50"
+                    className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50"
                   />
-                  <button type="submit" className="bg-[#1D9E75] hover:bg-[#168562] text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-[#1D9E75]/20 transition-all">
+                  <button type="submit" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-emerald-500/20 transition-all">
                     Subscribe
                   </button>
                 </form>

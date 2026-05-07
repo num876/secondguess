@@ -39,7 +39,7 @@ const PLANS = [
     ],
     cta: "Start Pro Trial",
     popular: true,
-    color: "#1D9E75"
+    color: "#10B981"
   },
   {
     name: "Enterprise",
@@ -69,7 +69,7 @@ const FAQS = [
     a: "Yes, you can change your plan at any time. If you upgrade, the new features will be unlocked immediately and we'll prorate the difference."
   },
   {
-    q: "Is SecondGuess GDPR compliant?",
+    q: "Is FORENSIQ GDPR compliant?",
     a: "Yes. We anonymize all PII (Personally Identifiable Information) by default and offer data residency options for enterprise customers."
   },
   {
@@ -80,11 +80,11 @@ const FAQS = [
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30 overflow-x-hidden">
+    <main className="min-h-screen bg-slate-950 selection:bg-emerald-500/30 overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <GhostCursors />
         </div>
@@ -92,7 +92,7 @@ export default function PricingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1D9E75]/10 border border-[#1D9E75]/20 text-[#1D9E75] text-sm font-bold mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold mb-8"
             >
               <Sparkles className="w-4 h-4" />
               <span>Simple, transparent pricing</span>
@@ -128,22 +128,22 @@ export default function PricingPage() {
                 transition={{ delay: 0.3 + idx * 0.1 }}
                 className={`relative p-8 rounded-3xl border transition-all duration-500 group ${
                   plan.popular 
-                  ? "bg-gradient-to-br from-slate-900 to-slate-950 border-[#1D9E75]/50 shadow-2xl shadow-[#1D9E75]/10 scale-105" 
-                  : "bg-slate-900/30 border-slate-800 hover:border-slate-700"
+                  ? "bg-slate-900 border-emerald-500/50 shadow-2xl shadow-emerald-500/10 scale-105" 
+                  : "bg-slate-900 border-slate-800 hover:border-slate-700"
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute top-0 right-0 bg-[#1D9E75] text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-3xl uppercase tracking-widest">
+                  <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-3xl uppercase tracking-widest">
                     Best Value
                   </div>
                 )}
                 
-                <h2 className="text-2xl font-bold text-white mb-2">{plan.name}</h2>
-                <p className="text-slate-500 text-sm mb-6 min-h-[40px]">{plan.description}</p>
+                <h2 className="text-2xl font-black text-white mb-2 uppercase tracking-tight">{plan.name}</h2>
+                <p className="text-slate-300 text-sm mb-6 min-h-[40px] font-medium leading-relaxed">{plan.description}</p>
                 
                 <div className="flex items-baseline gap-1 mb-8">
                   <span className="text-5xl font-black text-white">{plan.price === "Custom" ? "" : "£"}{plan.price}</span>
-                  {plan.price !== "Custom" && <span className="text-slate-500 font-medium">/mo</span>}
+                  {plan.price !== "Custom" && <span className="text-slate-300 font-bold">/mo</span>}
                 </div>
 
                 <Link
@@ -152,10 +152,10 @@ export default function PricingPage() {
                       ? "/contact?subject=Enterprise+%2F+Sales"
                       : `/login?plan=${plan.name.toLowerCase()}`
                   }
-                  className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all ${
+                  className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black uppercase tracking-wider transition-all ${
                     plan.popular
                     ? "bg-emerald-500 text-slate-950 hover:bg-emerald-400 shadow-xl shadow-emerald-500/20"
-                    : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
+                    : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950"
                   }`}
                 >
                   {plan.cta}
@@ -164,16 +164,16 @@ export default function PricingPage() {
 
                 <div className="mt-10 pt-10 border-t border-slate-800/50">
                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">What's included:</p>
-                   <ul className="space-y-4">
-                     {plan.features.map((feature) => (
-                       <li key={feature} className="flex items-start gap-3 text-sm text-slate-400 group/item">
-                         <div className="mt-0.5 w-5 h-5 rounded-full bg-slate-800/50 flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#1D9E75]/20 transition-colors">
-                           <Check className="w-3 h-3 text-[#1D9E75]" />
-                         </div>
-                         <span>{feature}</span>
-                       </li>
-                     ))}
-                   </ul>
+                    <ul className="space-y-4">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3 text-sm text-slate-300 font-medium group/item">
+                          <div className="mt-0.5 w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover/item:bg-emerald-500/20 transition-colors">
+                            <Check className="w-3 h-3 text-emerald-400" />
+                          </div>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                 </div>
               </motion.div>
             ))}
@@ -182,11 +182,11 @@ export default function PricingPage() {
       </section>
 
       {/* Comparison Strip */}
-      <section className="py-24 bg-slate-950 border-y border-slate-900">
+      <section className="py-20 bg-slate-950 border-y border-slate-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
-           <Zap className="w-12 h-12 text-[#1D9E75] mx-auto mb-6" />
-           <h2 className="text-3xl font-bold text-white mb-4">Unmatched analysis depth.</h2>
-           <p className="text-slate-500 max-w-xl mx-auto mb-12">
+           <Zap className="w-12 h-12 text-emerald-500 mx-auto mb-6" />
+           <h2 className="text-3xl font-black text-white uppercase tracking-tight mb-4">Unmatched analysis depth.</h2>
+           <p className="text-slate-300 max-w-xl mx-auto mb-12">
              All plans include our core pixel-tracking engine and cross-browser compatibility. Upgrade for advanced AI and longer retention.
            </p>
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -196,24 +196,24 @@ export default function PricingPage() {
                 { icon: HelpCircle, label: "24/7 Support" },
                 { icon: Sparkles, label: "AI Prediction" }
               ].map((item, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 flex flex-col items-center gap-3">
-                   <item.icon className="w-6 h-6 text-[#1D9E75]" />
-                   <span className="text-xs font-bold text-slate-300 uppercase tracking-tighter">{item.label}</span>
-                </div>
+                 <div key={i} className="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col items-center gap-3">
+                    <item.icon className="w-6 h-6 text-emerald-500" />
+                    <span className="text-xs font-bold text-slate-300 uppercase tracking-tighter">{item.label}</span>
+                 </div>
               ))}
            </div>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="py-32 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-black text-white tracking-tighter mb-16 text-center">Frequently Asked Questions</h2>
           <div className="space-y-8">
             {FAQS.map((faq, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-slate-900/30 border border-slate-800/50">
+              <div key={i} className="p-8 rounded-3xl bg-slate-900 border border-white/5">
                 <h3 className="text-lg font-bold text-white mb-3">{faq.q}</h3>
-                <p className="text-slate-400 font-light leading-relaxed">{faq.a}</p>
+                <p className="text-slate-300 font-medium leading-relaxed">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -221,16 +221,16 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section className="pb-32 px-6">
-        <div className="max-w-5xl mx-auto p-12 md:p-20 rounded-[40px] bg-gradient-to-br from-[#1D9E75] to-[#168562] text-center relative overflow-hidden group shadow-2xl shadow-[#1D9E75]/20">
+       <section className="pb-20 px-6">
+        <div className="max-w-5xl mx-auto p-12 md:p-20 rounded-[40px] bg-gradient-to-br from-emerald-500 to-emerald-700 text-center relative overflow-hidden group shadow-2xl shadow-emerald-500/20">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 group-hover:scale-[1.02] transition-transform duration-500">
-              Stop guessing. Start knowing.
+              Uncover the WHY.
             </h2>
             <Link 
               href="/login"
-              className="inline-flex items-center gap-3 bg-white text-[#1D9E75] px-10 py-5 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all hover:-translate-y-1 active:translate-y-0"
+              className="inline-flex items-center gap-3 bg-white text-emerald-600 px-10 py-5 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all hover:-translate-y-1 active:translate-y-0"
             >
               Get Started for Free
               <ArrowRight className="w-6 h-6" />
