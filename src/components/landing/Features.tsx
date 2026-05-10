@@ -45,7 +45,7 @@ const FEATURES = [
 
 export const Features = () => {
   return (
-    <section id="features" className="py-20 bg-[#020617] relative overflow-hidden dark-mesh">
+    <section id="features" className="py-16 bg-[#020617] relative overflow-hidden dark-mesh">
       <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">

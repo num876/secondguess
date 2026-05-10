@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       
       {/* Infinite Logo Marquee */}
-      <section className="py-20 bg-[#020617] border-y border-white/5 relative overflow-hidden">
+      <section className="py-16 bg-[#020617] border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <p className="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
@@ -44,7 +44,7 @@ export default function Home() {
       </section>
 
       {/* The Forensic Process */}
-      <section id="workflow" className="py-20 bg-[#020617] relative overflow-hidden">
+      <section id="workflow" className="py-16 bg-[#020617] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +87,7 @@ export default function Home() {
       <Features />
 
       {/* Founder / About Section */}
-      <section className="py-20 bg-[#020617] relative overflow-hidden">
+      <section className="py-16 bg-[#020617] relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none translate-x-1/2" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -187,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* Ecosystem / Integrations Teaser */}
-      <section className="py-20 bg-[#020617] border-y border-white/5 relative overflow-hidden">
+      <section className="py-16 bg-[#020617] border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -210,66 +210,104 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-[#020617] relative overflow-hidden">
+      <section id="pricing" className="py-16 bg-[#020617] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-16 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ delay: 0.2 }}
-            className="group glass-card-dark rounded-[3rem] p-10 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden"
-          >
-             {/* Shimmer Effect */}
-             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* Free Audit Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ delay: 0.1 }}
+              className="glass-card-dark bg-slate-900/20 rounded-[3rem] p-10 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col"
+            >
+               <p className="text-slate-500 font-black uppercase tracking-[0.3em] text-xs mb-6">Free Audit</p>
+               
+               <div className="flex items-baseline justify-center gap-2 mb-10">
+                  <span className="text-6xl font-black text-white tracking-tighter">£0</span>
+                  <span className="text-slate-600 font-bold uppercase tracking-widest text-xs">/ month</span>
+               </div>
+               
+               <div className="space-y-6 text-left max-w-xs mx-auto mb-12 flex-grow">
+                  {[
+                    "1 session replay",
+                    "Basic friction report",
+                    "7-day data retention"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 text-slate-400 text-sm font-medium">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+                      {item}
+                    </div>
+                  ))}
+               </div>
 
-             <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-6 py-2 rounded-bl-3xl uppercase tracking-widest">
-               Most Popular
-             </div>
-             
-             <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs mb-6">Neural Growth Plan</p>
-             
-             <div className="flex items-baseline justify-center gap-2 mb-10">
-                <span className="text-7xl font-black text-white tracking-tighter">£39</span>
-                <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">/ month</span>
-             </div>
-             
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto mb-12">
-                {[
-                  "10,000 monthly sessions",
-                  "AI Behavioral Analysis",
-                  "90-day data retention",
-                  "Custom Signal Webhooks",
-                  "Advanced Heatmaps",
-                  "Neural Conversion Logic"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 text-slate-400 text-sm font-medium">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                    {item}
-                  </div>
-                ))}
-             </div>
+               <Link href="/login" className="block mt-auto">
+                 <button className="w-full bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-[0.2em] py-5 rounded-2xl transition-all border border-white/10 active:scale-[0.98]">
+                    Start Free Audit
+                 </button>
+               </Link>
+            </motion.div>
 
-             <Link href="/login" className="block group/btn">
-               <button className="w-full bg-emerald-500 text-slate-950 font-black uppercase tracking-[0.2em] py-6 rounded-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20 group-hover/btn:scale-[1.02] active:scale-[0.98]">
-                  Get Started Free
-               </button>
-             </Link>
-             <p className="mt-6 text-[10px] text-slate-600 font-black uppercase tracking-widest">No credit card required for audit phase.</p>
-          </motion.div>
+            {/* Neural Growth Plan Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ delay: 0.2 }}
+              className="group glass-card-dark bg-slate-900/40 rounded-[3rem] p-10 md:p-12 border border-emerald-500/30 group-hover:border-emerald-500/60 transition-all duration-500 shadow-2xl relative overflow-hidden flex flex-col"
+            >
+               {/* Shimmer Effect */}
+               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+               <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-6 py-2 rounded-bl-3xl uppercase tracking-widest">
+                 Most Popular
+               </div>
+               
+               <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs mb-6">Neural Growth Plan</p>
+               
+               <div className="flex items-baseline justify-center gap-2 mb-10">
+                  <span className="text-7xl font-black text-white tracking-tighter">£39</span>
+                  <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">/ month</span>
+               </div>
+               
+               <div className="grid grid-cols-1 gap-6 text-left max-w-xs mx-auto mb-12 flex-grow">
+                  {[
+                    "10,000 monthly sessions",
+                    "AI Behavioral Analysis",
+                    "90-day data retention",
+                    "Custom Signal Webhooks",
+                    "Advanced Heatmaps",
+                    "Neural Conversion Logic"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 text-slate-400 text-sm font-medium">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                      {item}
+                    </div>
+                  ))}
+               </div>
+
+               <Link href="/login" className="block mt-auto group/btn">
+                 <button className="w-full bg-emerald-500 text-slate-950 font-black uppercase tracking-[0.2em] py-6 rounded-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20 group-hover/btn:scale-[1.02] active:scale-[0.98]">
+                    Get Started Now
+                 </button>
+               </Link>
+               <p className="mt-6 text-[10px] text-slate-600 font-black uppercase tracking-widest">No credit card required.</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Forensic FAQ */}
-      <section className="py-20 bg-[#020617] relative overflow-hidden">
+      <section className="py-16 bg-[#020617] relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
            <h2 className="text-3xl font-black text-white tracking-tighter mb-4 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
            <p className="text-gray-400 text-sm text-center mb-16 uppercase tracking-widest font-medium">Frequently asked questions about Forensiq</p>
@@ -289,7 +327,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#020617] overflow-hidden relative">
+      <section className="py-16 bg-[#020617] overflow-hidden relative">
         <div className="absolute inset-0 bg-emerald-500/5 blur-[120px] rounded-full translate-y-1/2" />
         
         {/* Refractive Sphere */}
