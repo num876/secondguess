@@ -228,13 +228,13 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: 0.1 }}
-              className="glass-card-dark bg-slate-900/20 rounded-[3rem] p-10 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col"
+              className="glass-card-dark bg-slate-900/20 rounded-[3rem] p-10 md:p-12 border border-gray-700 shadow-2xl relative overflow-hidden flex flex-col"
             >
-               <p className="text-slate-500 font-black uppercase tracking-[0.3em] text-xs mb-6">Free Audit</p>
+               <h3 className="text-white text-lg font-black uppercase tracking-widest mb-2">Free Audit</h3>
                
                <div className="flex items-baseline justify-center gap-2 mb-10">
-                  <span className="text-6xl font-black text-white tracking-tighter">£0</span>
-                  <span className="text-slate-600 font-bold uppercase tracking-widest text-xs">/ month</span>
+                  <span className="text-6xl font-bold text-white tracking-tighter">£0</span>
+                  <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">/ month</span>
                </div>
                
                <div className="space-y-6 text-left max-w-xs mx-auto mb-12 flex-grow">
@@ -243,7 +243,7 @@ export default function Home() {
                     "Basic friction report",
                     "7-day data retention"
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-4 text-slate-400 text-sm font-medium">
+                    <div key={i} className="flex items-center gap-4 text-gray-300 text-sm font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
                       {item}
                     </div>
@@ -272,11 +272,11 @@ export default function Home() {
                  Most Popular
                </div>
                
-               <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs mb-6">Neural Growth Plan</p>
+               <h3 className="text-emerald-400 text-lg font-black uppercase tracking-widest mb-2">Neural Growth</h3>
                
                <div className="flex items-baseline justify-center gap-2 mb-10">
-                  <span className="text-7xl font-black text-white tracking-tighter">£39</span>
-                  <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">/ month</span>
+                  <span className="text-7xl font-bold text-white tracking-tighter">£39</span>
+                  <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">/ month</span>
                </div>
                
                <div className="grid grid-cols-1 gap-6 text-left max-w-xs mx-auto mb-12 flex-grow">
@@ -288,7 +288,7 @@ export default function Home() {
                     "Advanced Heatmaps",
                     "Neural Conversion Logic"
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-4 text-slate-400 text-sm font-medium">
+                    <div key={i} className="flex items-center gap-4 text-gray-300 text-sm font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                       {item}
                     </div>
