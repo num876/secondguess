@@ -24,7 +24,7 @@ export const Footer = () => {
               <span className="text-xl font-bold tracking-tight text-white">FORENSIQ</span>
             </Link>
             <p className="text-slate-500 max-w-xs leading-relaxed font-light">
-              Forensic session intelligence. Uncover the hidden WHY.
+              Session intelligence. Uncover the hidden WHY.
             </p>
           </div>
           

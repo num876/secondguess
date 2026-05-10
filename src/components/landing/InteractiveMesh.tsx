@@ -86,7 +86,7 @@ export const InteractiveMesh = () => {
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Neural Particles - skip on mobile */}
+      {/* Flow Particles - skip on mobile */}
       {!isMobile && !reduceMotion && (
         <div className="absolute inset-0 z-[1]">
           {mounted && particles.map((p) => (

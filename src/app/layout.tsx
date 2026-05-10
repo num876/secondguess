@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FORENSIQ | Forensic Session Intelligence",
-  description: "Real-time user behavior analysis and AI-driven conversion forensic.",
+  title: "FORENSIQ | Session Intelligence",
+  description: "Real-time user behavior analysis and AI-driven conversion analysis.",
 };
 
 export default function RootLayout({

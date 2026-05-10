@@ -20,7 +20,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <p className="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
-            Trusted by Forensic Performance Teams
+            Used by product and growth teams at
           </p>
         </div>
         
@@ -32,7 +32,7 @@ export default function Home() {
           >
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex gap-24 items-center">
-                {["FLOWSTATE", "LUMINA", "CONTEXTLY", "PRISM", "NEURAL", "QUANTUM"].map((logo) => (
+                {["FLOWSTATE", "LUMINA", "CONTEXTLY", "PRISM", "VOYAGER", "QUANTUM"].map((logo) => (
                   <div key={logo} className="text-2xl font-black text-white/20 tracking-tighter hover:text-emerald-500 transition-colors cursor-default">
                     {logo}
                   </div>
@@ -52,8 +52,8 @@ export default function Home() {
             viewport={{ once: true, amount: 0.05 }}
             className="mb-24"
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">The Forensic <span className="text-emerald-400">Workflow.</span></h2>
-            <p className="text-slate-400 font-medium max-w-xl mx-auto uppercase text-[10px] tracking-[0.4em]">From Data to Certainty in 30 Seconds</p>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">How It <span className="text-emerald-400">Works.</span></h2>
+            <p className="text-slate-400 font-medium max-w-xl mx-auto uppercase text-[10px] tracking-[0.4em]">Three steps. No engineers needed.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -61,9 +61,9 @@ export default function Home() {
              <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent hidden md:block" />
              
              {[
-               { step: "01", title: "Deploy Neural Snippet", desc: "One line of code. Zero latency. Global deployment." },
-               { step: "02", title: "AI Forensic Scan", desc: "Our engine replays sessions and flags friction points automatically." },
-               { step: "03", title: "Execute Optimisation", desc: "Receive an AI-driven checklist of what to kill and what to scale." }
+               { step: "01", title: "Paste one line of code", desc: "Add a single script tag to your site. Takes 2 minutes. Works with Shopify, Webflow, WordPress — anything." },
+               { step: "02", title: "We watch your visitors", desc: "Forensiq records every session and automatically flags where people get confused, stuck, or leave." },
+               { step: "03", title: "Get a fix list", desc: "You receive a prioritised report: what's costing you conversions and exactly what to change." }
              ].map((item, i) => (
                <motion.div
                  key={i}
@@ -162,7 +162,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-xl text-slate-300 font-medium leading-relaxed mb-8 italic">
-                  I built Forensiq because I was tired of dashboards that told me WHAT happened, but left me guessing WHY. We created this studio to give every performance team the tools to see exactly where friction lives and kill it instantly. This isn't just tracking; it's digital behavioral forensics.
+                  I spent years staring at dashboards that told me bounce rate was up and conversions were down — but never told me why. So I built Forensiq. Now when something breaks on your site, you don't guess. You watch the session, see the exact moment they gave up, and fix it before lunch.
                 </p>
 
                 <div className="flex items-center gap-6 border-t border-white/5 pt-8">
@@ -195,7 +195,7 @@ export default function Home() {
                  <h2 className="text-4xl font-black text-white tracking-tighter mb-6 leading-none">Plays nice with <br/><span className="text-emerald-400">your stack.</span></h2>
                  <p className="text-slate-400 font-medium mb-8">Connect Forensiq to your checkout, CRM, and analytics engines in one click. No engineering required.</p>
                  <Link href="/integrations" className="bg-white/5 hover:bg-white/10 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-white/10 transition-all inline-block">
-                    Explore Ecosystem
+                    View all integrations
                  </Link>
               </div>
               <div className="flex-grow grid grid-cols-3 gap-6">
@@ -218,11 +218,11 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-16 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-16 leading-[0.95]">One plan. <br/><span className="text-emerald-400">Start free.</span></h2>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            {/* Free Audit Card */}
+            {/* Starter Card */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -230,7 +230,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="glass-card-dark bg-slate-900/20 rounded-[3rem] p-10 md:p-12 border border-gray-700 shadow-2xl relative overflow-hidden flex flex-col"
             >
-               <h3 className="text-white text-lg font-black uppercase tracking-widest mb-2">Free Audit</h3>
+               <h3 className="text-white text-lg font-black uppercase tracking-widest mb-2">Starter</h3>
                
                <div className="flex items-baseline justify-center gap-2 mb-10">
                   <span className="text-6xl font-bold text-white tracking-tighter">£0</span>
@@ -239,9 +239,9 @@ export default function Home() {
                
                <div className="space-y-6 text-left max-w-xs mx-auto mb-12 flex-grow">
                   {[
-                    "1 session replay",
-                    "Basic friction report",
-                    "7-day data retention"
+                    "Replay 1 session per day",
+                    "See where visitors get stuck",
+                    "7 days of history"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-4 text-gray-300 text-sm font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
@@ -252,12 +252,12 @@ export default function Home() {
 
                <Link href="/login" className="block mt-auto">
                  <button className="w-full bg-white/5 hover:bg-white/10 text-white font-black uppercase tracking-[0.2em] py-5 rounded-2xl transition-all border border-white/10 active:scale-[0.98]">
-                    Start Free Audit
+                    Get Started Free
                  </button>
                </Link>
             </motion.div>
 
-            {/* Neural Growth Plan Card */}
+            {/* Pro Card */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -272,7 +272,7 @@ export default function Home() {
                  Most Popular
                </div>
                
-               <h3 className="text-emerald-400 text-lg font-black uppercase tracking-widest mb-2">Neural Growth</h3>
+               <h3 className="text-emerald-400 text-lg font-black uppercase tracking-widest mb-2">Pro</h3>
                
                <div className="flex items-baseline justify-center gap-2 mb-10">
                   <span className="text-7xl font-bold text-white tracking-tighter">£39</span>
@@ -281,12 +281,12 @@ export default function Home() {
                
                <div className="grid grid-cols-1 gap-6 text-left max-w-xs mx-auto mb-12 flex-grow">
                   {[
-                    "10,000 monthly sessions",
-                    "AI Behavioral Analysis",
-                    "90-day data retention",
-                    "Custom Signal Webhooks",
-                    "Advanced Heatmaps",
-                    "Neural Conversion Logic"
+                    "10,000 sessions recorded",
+                    "90 days of history",
+                    "Click & scroll heatmaps",
+                    "AI tells you what to fix",
+                    "Slack & webhook alerts",
+                    "Conversion drop-off reports"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-4 text-gray-300 text-sm font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
@@ -297,7 +297,7 @@ export default function Home() {
 
                <Link href="/login" className="block mt-auto group/btn">
                  <button className="w-full bg-emerald-500 text-slate-950 font-black uppercase tracking-[0.2em] py-6 rounded-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20 group-hover/btn:scale-[1.02] active:scale-[0.98]">
-                    Get Started Now
+                    Get Started Free
                  </button>
                </Link>
                <p className="mt-6 text-[10px] text-slate-600 font-black uppercase tracking-widest">No credit card required.</p>
@@ -309,12 +309,11 @@ export default function Home() {
       {/* Forensic FAQ */}
       <section className="py-16 bg-[#020617] relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-           <h2 className="text-3xl font-black text-white tracking-tighter mb-4 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
-           <p className="text-gray-400 text-sm text-center mb-16 uppercase tracking-widest font-medium">Frequently asked questions about Forensiq</p>
+           <h2 className="text-3xl font-black text-white tracking-tighter mb-16 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
            <div className="space-y-6">
               {[
-                { q: "Does it slow down my store?", a: "No. Our neural snippet is under 3kb and loads asynchronously after your main assets." },
-                { q: "Is it GDPR compliant?", a: "Absolutely. We mask all PII and sensitive inputs by default. Forensic-grade privacy." },
+                { q: "Does it slow down my store?", a: "No. Our tracking script is under 3kb and loads asynchronously after your main assets." },
+                { q: "Is it GDPR compliant?", a: "Absolutely. We mask all PII and sensitive inputs by default. Enterprise-grade privacy." },
                 { q: "Can I track custom events?", a: "Yes. Our Signal API allows you to tag any user action for deep replay analysis." }
               ].map((faq, i) => (
                 <div key={i} className="glass-card-dark rounded-3xl p-8 border border-white/5 hover:border-emerald-500/20 transition-all">
@@ -351,7 +350,7 @@ export default function Home() {
               <Link href="/login" className="inline-block group">
                 <button className="relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-12 py-7 rounded-full text-sm font-black uppercase tracking-[0.3em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] overflow-hidden">
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  Initialize Forensic Audit
+                  Start your free audit →
                 </button>
               </Link>
             </div>

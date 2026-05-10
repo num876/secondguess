@@ -7,38 +7,38 @@ import { Zap, Target, MousePointer2, LogOut, Eye, Search } from "lucide-react";
 const FEATURES = [
   {
     icon: Zap,
-    title: "Rage Click Detection",
-    description: "Instantly flag when users are clicking repeatedly on non-functional elements or broken links.",
+    title: "Spot broken experiences instantly",
+    description: "See exactly when users click repeatedly on something that doesn't work — before they leave.",
     color: "#EF4444"
   },
   {
     icon: Target,
-    title: "Conversion Mapping",
-    description: "Track every step of your conversion funnel and see exactly where users drop off.",
+    title: "Find where you're losing sales",
+    description: "Track every step of your funnel. See the exact page, button, or form field where buyers drop off.",
     color: "#10B981"
   },
   {
     icon: Eye,
-    title: "Real-Time Replays",
-    description: "Watch pixel-perfect replays of any session within minutes of it happening.",
+    title: "Replay any session in seconds",
+    description: "Watch what your visitors actually did — every scroll, click, and hesitation — within minutes.",
     color: "#6366F1"
   },
   {
     icon: LogOut,
-    title: "Exit Intent AI",
-    description: "Understand the behavioral patterns that predict when a user is about to leave your funnel.",
+    title: "Catch them before they leave",
+    description: "Understand the patterns that predict when a visitor is about to abandon — so you can intervene.",
     color: "#F59E0B"
   },
   {
     icon: MousePointer2,
-    title: "Friction Scoring",
-    description: "Automated scoring of every session based on scrolls, pauses, and navigational confusion.",
+    title: "Every session gets a score",
+    description: "Automatic scoring based on confusion signals — hesitation, backtracking, rage clicks — so you know which sessions to review first.",
     color: "#10B981"
   },
   {
     icon: Search,
-    title: "Semantic Filtering",
-    description: "Search for specific behaviors like 'Added to cart but didn't pay' with our natural language engine.",
+    title: "Search sessions like you search email",
+    description: "Type 'added to cart but didn't buy' and find every matching session instantly.",
     color: "#06B6D4"
   }
 ];
@@ -64,7 +64,7 @@ export const Features = () => {
             viewport={{ once: true, amount: 0.05 }}
             className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6 leading-[0.95]"
           >
-            Forensic Depth. <br/><span className="text-emerald-400">Total Clarity.</span>
+            Deep Analysis. <br/><span className="text-emerald-400">Total Clarity.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ export const Features = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-400 font-medium max-w-2xl mx-auto"
           >
-            Most tools tell you <span className="text-white italic">*what*</span> happened. <span className="text-white font-bold">Forensiq</span> tells you <span className="text-emerald-400 italic">*why*</span>.
+            Most tools tell you <span className="text-white italic">what</span> happened. <span className="text-white font-bold">Forensiq</span> tells you <span className="text-emerald-400 italic">why</span>.
           </motion.p>
         </div>
 

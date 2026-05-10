@@ -46,7 +46,7 @@ export default function SetupPage() {
   }, [userProfile]);
 
   const trackerSnippet = useMemo(() => (
-    `<!-- Forensiq Neural Tracker -->\n<script src="${origin}/tracker.js?siteId=${siteId}" async></script>`
+    `<!-- Forensiq Tracker -->\n<script src="${origin}/tracker.js?siteId=${siteId}" async></script>`
   ), [origin, siteId]);
 
   const handleCreateSite = async (e: React.FormEvent) => {
@@ -135,7 +135,7 @@ export default function SetupPage() {
               </div>
 
               <h2 className="text-3xl font-black text-white tracking-tighter mb-3">Configure your site</h2>
-              <p className="text-slate-400 font-medium mb-10">Tell us about the website you want to forensically track.</p>
+              <p className="text-slate-400 font-medium mb-10">Tell us about the website you want to track.</p>
               
               <form onSubmit={handleCreateSite} className="space-y-6">
                 <div className="space-y-2">
@@ -197,7 +197,7 @@ export default function SetupPage() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[100px] -mr-16 -mt-16 pointer-events-none" />
 
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-                  Step 2 of 2 — Install Neural Tracker
+                  Step 2 of 2 — Install Forensiq Tracker
                 </div>
 
                 <div className="flex items-center gap-4 mb-8">
@@ -205,7 +205,7 @@ export default function SetupPage() {
                     <Code2 className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-black text-white tracking-tighter">Install the Neural Snippet</h2>
+                    <h2 className="text-2xl font-black text-white tracking-tighter">Install the tracking script</h2>
                     <p className="text-slate-400 text-sm font-medium">Paste this into your site's &lt;head&gt; tag. It's under 3kb.</p>
                   </div>
                 </div>

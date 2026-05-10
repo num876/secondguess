@@ -128,7 +128,7 @@ export default function DashboardPage() {
                  <LayoutIcon className="w-10 h-10 text-emerald-400" />
                </div>
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tighter mb-3">Initializing Forensic Workspace</h2>
+            <h2 className="text-2xl font-black text-white tracking-tighter mb-3">Initializing Workspace</h2>
             <p className="text-slate-500 max-w-xs mx-auto text-sm font-medium leading-relaxed">Your intelligence environment is being prepared. This only takes a moment.</p>
             <div className="flex gap-2 mt-8">
                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
@@ -143,12 +143,12 @@ export default function DashboardPage() {
     <div className="space-y-12">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black text-white tracking-tighter mb-2">Forensic Intelligence</h1>
+          <h1 className="text-4xl font-black text-white tracking-tighter mb-2">Intelligence</h1>
           <p className="text-slate-400 font-medium tracking-wide">Syncing telemetry from site ID: <span className="text-emerald-400 font-black">{userProfile.siteId}</span></p>
         </div>
         <div className="flex items-center gap-3 text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em] bg-emerald-500/5 px-6 py-3 rounded-2xl border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-          Neural Link Established
+          Sync Established
         </div>
       </div>
 

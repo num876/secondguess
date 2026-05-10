@@ -123,7 +123,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-black text-white truncate uppercase tracking-widest">{user?.email?.split('@')[0]}</p>
-              <p className="text-[10px] text-emerald-500 font-black uppercase tracking-widest">Forensic Pro</p>
+              <p className="text-[10px] text-emerald-500 font-black uppercase tracking-widest">Pro</p>
             </div>
             <button 
               onClick={logout}
@@ -198,13 +198,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               {isNotifOpen && (
                 <div className="absolute top-full right-0 mt-3 w-80 sm:w-96 glass-card-dark border border-white/10 rounded-2xl sm:rounded-3xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] z-50 overflow-hidden animate-fade-up max-h-[calc(100vh-120px)] flex flex-col">
                    <div className="p-4 sm:p-6 border-b border-white/5 flex justify-between items-center shrink-0">
-                      <span className="text-xs sm:text-sm font-black tracking-wider text-white uppercase">Neural Feed</span>
+                      <span className="text-xs sm:text-sm font-black tracking-wider text-white uppercase">Activity Feed</span>
                       <span className="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg font-black tracking-wider">2 ACTIVE</span>
                    </div>
                    <div className="overflow-y-auto flex-1">
                       <div className="p-4 sm:p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
                          <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-wider">Cognitive Engine: ACTIVE</p>
-                         <p className="text-xs text-slate-400 mt-2 leading-relaxed font-medium">Intelligence synchronization complete. Forensic patterns are now being mapped to your session data.</p>
+                         <p className="text-xs text-slate-400 mt-2 leading-relaxed font-medium">Intelligence synchronization complete. Usage patterns are now being mapped to your session data.</p>
                       </div>
                       <div className="p-4 sm:p-6 hover:bg-white/[0.02] border-b border-white/5 transition-colors group">
                          <p className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-wider">Site Signal: HEALTHY</p>

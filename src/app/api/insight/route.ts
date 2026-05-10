@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
         insights: [
           {
             heading: "Cold Start Detected",
-            body: `We're waiting for more data from ${siteData?.name || 'your site'}. Once you have ~50 sessions, our AI will begin forensic analysis. For now, ensure your tracker is in the <head> tag.`
+            body: `We're waiting for more data from ${siteData?.name || 'your site'}. Once you have ~50 sessions, our AI will begin deep analysis. For now, ensure your tracker is in the <head> tag.`
           },
           {
             heading: "UX Best Practice",
@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
     }
 
     const prompt = `
-    You are a Forensic Conversion Rate Optimization (CRO) expert at SecondGuess. 
+    You are a Conversion Rate Optimization (CRO) expert at FORENSIQ. 
     Analyze behavior for site: ${siteData?.name || 'Unknown'} (${siteData?.domain || ''})
     
     Stats (Last 500 events):
@@ -124,7 +124,7 @@ export async function POST(req: NextRequest) {
     Identify 3 specific, high-impact "Friction Points".
     Requirements:
     1. Be hyper-specific. Use the site's name and actual paths/fields.
-    2. Use a "Forensic" tone. Phrases like "Momentum leakage", "Validation wall", "Cognitive load".
+    2. Use an analytical tone. Phrases like "Momentum leakage", "Validation wall", "Cognitive load".
     3. Suggest one technical fix for each point.
     
     Format: 

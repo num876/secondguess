@@ -1,9 +1,9 @@
 (function() {
-    // SecondGuess Tracker
+    // Forensiq Tracker
     const script = document.currentScript;
     const scriptSrc = new URL(script.src);
     const siteId = scriptSrc.searchParams.get('siteId');
-    if (!siteId) return console.error('SecondGuess: siteId is missing');
+    if (!siteId) return console.error('Forensiq: siteId is missing');
 
     const STORAGE_KEY_VISITOR = 'sg_visitor_id';
     const STORAGE_KEY_SESSION = 'sg_session_id';
@@ -51,7 +51,7 @@
         
         try {
             // Using navigator.sendBeacon for better reliability on unload, 
-            // but fetch is better for general events to ensure JSON header
+            // but fetch is used for general events to ensure JSON headers
             await fetch(TRACKING_ENDPOINT, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

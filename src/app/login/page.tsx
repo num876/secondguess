@@ -268,7 +268,7 @@ export default function LoginPage() {
               <span className="text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">Zero Guessing.</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-md leading-relaxed font-light">
-              The forensic behavioral intelligence engine that tells you exactly why customers leave — and precisely how to fix it.
+              The behavioral intelligence engine that tells you exactly why customers leave — and precisely how to fix it.
             </p>
           </motion.div>
         </div>
@@ -407,8 +407,8 @@ export default function LoginPage() {
                   {isResetMode
                     ? "Enter your email to receive a recovery link."
                     : isSignUp
-                    ? "Initialize your forensic intelligence workspace."
-                    : "Access your real-time forensic dashboard."}
+                    ? "Initialize your intelligence workspace."
+                    : "Access your real-time dashboard."}
                 </p>
 
                 <div className="space-y-6">

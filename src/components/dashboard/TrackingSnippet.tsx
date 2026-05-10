@@ -15,7 +15,7 @@ export function TrackingSnippet({ siteId }: TrackingSnippetProps) {
     setOrigin(window.location.origin);
   }, []);
 
-  const snippet = `<!-- SecondGuess Analytics -->
+  const snippet = `<!-- Forensiq Tracker -->
 <script src="${origin || "https://secondguess.io"}/tracker.js?siteId=${siteId}" async></script>`;
 
   const copyToClipboard = () => {
@@ -31,7 +31,7 @@ export function TrackingSnippet({ siteId }: TrackingSnippetProps) {
           <div className="w-6 h-6 bg-emerald-500/20 rounded-md flex items-center justify-center">
             <Terminal className="w-3.5 h-3.5 text-emerald-400" />
           </div>
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tracking Snippet</span>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">tracking script</span>
         </div>
         <button
           onClick={copyToClipboard}
