@@ -143,7 +143,7 @@ export default function IntegrationsPage() {
                 key={app.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ delay: i * 0.1 }}
                 className="group relative p-8 rounded-[32px] bg-slate-900/30 border border-slate-800 hover:border-emerald-500/30 hover:bg-slate-900/50 transition-all"
               >

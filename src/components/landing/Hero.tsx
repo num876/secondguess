@@ -74,14 +74,13 @@ export const Hero = () => {
               Start Free Forensic Audit
             </Link>
             <Link
-              href="/contact?ref=demo"
+              href="#workflow"
               className="flex items-center gap-3 sm:gap-4 text-white font-black uppercase tracking-wider text-sm hover:text-emerald-400 transition-colors group pt-2"
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/5 transition-all touch-target">
                 <Play className="w-4 h-4 fill-white group-hover:fill-emerald-400 group-hover:text-emerald-400" />
               </div>
-              <span className="hidden sm:inline">View Studio Demo</span>
-              <span className="sm:hidden">Demo</span>
+              <span>SEE HOW IT WORKS ↓</span>
             </Link>
           </motion.div>
         </div>

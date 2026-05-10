@@ -34,7 +34,7 @@ export default function InstallationPage() {
     <main className="min-h-screen bg-slate-950 selection:bg-[#1D9E75]/30 text-white">
       <Navbar />
       
-      <div className="pt-32 pb-24 max-w-5xl mx-auto px-6">
+      <div className="pt-24 pb-20 max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           
           {/* Main Content */}

@@ -44,12 +44,12 @@ export default function Home() {
       </section>
 
       {/* The Forensic Process */}
-      <section className="py-20 bg-[#020617] relative overflow-hidden">
+      <section id="workflow" className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             className="mb-24"
           >
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">The Forensic <span className="text-emerald-400">Workflow.</span></h2>
@@ -69,7 +69,7 @@ export default function Home() {
                  key={i}
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true, amount: 0.1 }}
+                 viewport={{ once: true, amount: 0.05 }}
                  transition={{ delay: i * 0.2 }}
                  className="relative group"
                >
@@ -77,7 +77,7 @@ export default function Home() {
                     <span className="text-xl font-black">{item.step}</span>
                  </div>
                  <h4 className="text-white font-black uppercase tracking-widest text-xs mb-4">{item.title}</h4>
-                 <p className="text-slate-500 text-sm font-medium leading-relaxed px-4">{item.desc}</p>
+                 <p className="text-gray-300 text-sm font-medium leading-relaxed px-4">{item.desc}</p>
                </motion.div>
              ))}
           </div>
@@ -96,7 +96,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.05 }}
               className="relative group"
             >
               <div className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] max-w-md mx-auto lg:mx-0">
@@ -134,7 +134,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.05 }}
                 className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-10"
               >
                 Director's Memo
@@ -143,7 +143,7 @@ export default function Home() {
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[1.1]"
               >
@@ -153,7 +153,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ delay: 0.2 }}
                 className="glass-card-dark rounded-[2.5rem] p-10 border border-white/10 relative overflow-hidden"
               >
@@ -216,7 +216,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
           >
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
           </motion.div>
@@ -224,7 +224,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ delay: 0.2 }}
             className="group glass-card-dark rounded-[3rem] p-10 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden"
           >
@@ -271,7 +271,8 @@ export default function Home() {
       {/* Forensic FAQ */}
       <section className="py-20 bg-[#020617] relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-           <h2 className="text-3xl font-black text-white tracking-tighter mb-16 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
+           <h2 className="text-3xl font-black text-white tracking-tighter mb-4 text-center uppercase">Common <span className="text-emerald-400">Signals.</span></h2>
+           <p className="text-gray-400 text-sm text-center mb-16 uppercase tracking-widest font-medium">Frequently asked questions about Forensiq</p>
            <div className="space-y-6">
               {[
                 { q: "Does it slow down my store?", a: "No. Our neural snippet is under 3kb and loads asynchronously after your main assets." },

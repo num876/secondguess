@@ -53,7 +53,7 @@ export const Features = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             className="inline-flex items-center gap-3 px-5 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6"
           >
             Capabilities
@@ -61,7 +61,7 @@ export const Features = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6 leading-[0.95]"
           >
             Forensic Depth. <br/><span className="text-emerald-400">Total Clarity.</span>
@@ -69,7 +69,7 @@ export const Features = () => {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-400 font-medium max-w-2xl mx-auto"
           >
@@ -83,7 +83,7 @@ export const Features = () => {
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ 
                 y: -10,

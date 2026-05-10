@@ -13,7 +13,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden text-center mx-auto max-w-4xl px-6">
+      <section className="relative pt-24 pb-20 overflow-hidden text-center mx-auto max-w-4xl px-6">
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <GhostCursors />
         </div>
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ delay: i * 0.1 }}
                 className="text-center group"
               >
@@ -79,7 +79,7 @@ export default function AboutPage() {
                <motion.div 
                  initial={{ opacity: 0, scale: 0.95 }}
                  whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true, amount: 0.1 }}
+                 viewport={{ once: true, amount: 0.05 }}
                  className="relative p-1 bg-gradient-to-br from-emerald-500/30 to-transparent rounded-[32px]"
                >
                  <div className="bg-slate-950 rounded-[28px] p-8 aspect-video flex flex-col justify-between">

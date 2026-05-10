@@ -199,7 +199,7 @@ function SettingsContent() {
     <main className="min-h-screen bg-[#020617] text-white flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-400">
       <Navbar />
       
-      <div className="flex-grow pt-32 pb-24 max-w-7xl mx-auto px-6 w-full relative">
+      <div className="flex-grow pt-24 pb-20 max-w-7xl mx-auto px-6 w-full relative">
         <AnimatePresence>
           {saved && (
             <motion.div 
