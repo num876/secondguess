@@ -31,41 +31,29 @@ export const Hero = () => {
       {/* Content Layer */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
-        <div className="text-left">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5"
+        <div className="hero-content text-left">
+          <div
+            className="hero-badge inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5"
           >
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>v2.0 Neural Engine Live</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(2.5rem,8vw,4.5rem)] font-black text-white leading-tight mb-8"
+          <h1
+            className="hero-headline text-[clamp(2.5rem,8vw,4.5rem)] font-black text-white leading-tight mb-8"
           >
             Uncover the <br/>
             <span className="text-emerald-500">Hidden WHY.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
+          <p
+            className="hero-subheadline text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
           >
             Forensiq replays every session, flags the exact moment users get stuck, and tells you what to fix — in 30 seconds.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8"
+          <div
+            className="hero-cta flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8"
           >
             <Link
               href="/login"
@@ -96,23 +84,18 @@ export const Hero = () => {
              </div>
              <div className="space-y-3">
                 {signals.map((s, i) => (
-                  <motion.div 
+                  <div 
                     key={s + i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
                     className="text-xs font-mono text-emerald-400/80 leading-tight"
                   >
                     {s}
-                  </motion.div>
+                  </div>
                 ))}
              </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative bg-slate-950 rounded-[2.5rem] border border-emerald-500/15 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.05)] ring-1 ring-white/10 overflow-hidden group"
+          <div
+            className="relative bg-slate-950 rounded-[2.5rem] border border-emerald-500/15 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.05)] ring-1 ring-white/10 overflow-hidden group hero-viz"
           >
             <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4 px-2">
               <div className="flex gap-1.5">
@@ -171,11 +154,8 @@ export const Hero = () => {
           </motion.div>
 
           {/* Floating Metric Card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl"
+          <div 
+            className="absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl hero-metric"
           >
              <p className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Health Score</p>
              <div className="flex items-center gap-4">
@@ -184,7 +164,7 @@ export const Hero = () => {
                    <div className="h-full bg-emerald-500 w-[98%]" />
                 </div>
              </div>
-          </motion.div>
+          </div>
         </div>
 
       </div>
