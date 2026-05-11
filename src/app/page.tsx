@@ -218,7 +218,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 leading-[0.95]">Simple, scale-ready <br/><span className="text-emerald-400">Forensic Pricing.</span></h2>
+            <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto">Start free. Upgrade when you&apos;re ready.</p>
           </motion.div>
 
           <motion.div 
