@@ -72,6 +72,20 @@ export const Hero = () => {
               <span className="sm:hidden">Demo</span>
             </Link>
           </div>
+
+          {/* Mobile Signal Feed - Show below CTA on mobile only */}
+          <div className="lg:hidden mt-8 sm:mt-12 rounded-lg border border-emerald-500/20 bg-slate-900/50 p-4 text-xs font-mono">
+            <div className="text-emerald-400 font-bold mb-3 uppercase tracking-wider text-xs">
+              Signal Feed
+            </div>
+            <div className="space-y-2">
+              {signals.slice(0, 2).map((s, i) => (
+                <div key={s + i} className="text-gray-400 leading-tight">
+                  {s}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Dynamic Visualization Side */}
