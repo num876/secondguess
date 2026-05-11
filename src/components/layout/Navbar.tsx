@@ -23,6 +23,18 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Manage body overflow when mobile menu opens/closes
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
       scrolled ? "bg-slate-950/95 backdrop-blur-3xl border-b border-white/5 py-3 shadow-2xl" : "bg-transparent py-6"
@@ -94,7 +106,14 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full inset-x-0 bg-slate-950 border-b border-white/5 p-4 sm:p-8 flex flex-col gap-4 md:hidden backdrop-blur-3xl max-h-[calc(100vh-80px)] overflow-y-auto"
+            transition={{ duration: 0.2, type: "tween" }}
+            onAnimationComplete={() => {
+              if (!mobileMenuOpen) {
+                document.body.style.willChange = '';
+              }
+            }}
+            className="absolute top-full inset-x-0 bg-[#020617] border-b border-white/5 p-4 sm:p-8 flex flex-col gap-4 md:hidden max-h-[calc(100vh-80px)] overflow-y-auto transition-all duration-200"
+            style={{ willChange: 'transform' }}
           >
             <Link 
               href="/#features" 
