@@ -10,17 +10,17 @@ import { GhostCursors } from "@/components/auth/GhostCursors";
 
 const PLANS = [
   {
-    name: "Free",
+    name: "Starter",
     price: "0",
     description: "Perfect for testing the waters and personal projects.",
     features: [
-      "500 monthly sessions",
-      "14-day data retention",
+      "Replay 1 session per day",
+      "See where visitors get stuck",
+      "7 days of history",
       "Standard heatmaps",
-      "Basic session replay",
       "Community support"
     ],
-    cta: "Start for Free",
+    cta: "Start Free Audit",
     popular: false,
     color: "#94A3B8"
   },
@@ -29,15 +29,15 @@ const PLANS = [
     price: "39",
     description: "Everything you need to optimize high-traffic products.",
     features: [
-      "10,000 monthly sessions",
-      "90-day data retention",
-      "Advanced AI Insights",
-      "Custom conversion funnels",
-      "Priority email support",
-      "Unlimited sites",
-      "Rage click detection"
+      "10,000 sessions recorded",
+      "90 days of history",
+      "Click & scroll heatmaps",
+      "AI tells you what to fix",
+      "Slack & webhook alerts",
+      "Conversion drop-off reports",
+      "Priority email support"
     ],
-    cta: "Start Pro Trial",
+    cta: "Get Started Free",
     popular: true,
     color: "#10B981"
   },
@@ -47,7 +47,7 @@ const PLANS = [
     description: "Custom solutions for large scale organizations.",
     features: [
       "Unlimited sessions",
-      "Any data retention period",
+      "Unlimited history",
       "Single Sign-On (SSO)",
       "Dedicated account manager",
       "Custom legal terms",
@@ -62,19 +62,19 @@ const PLANS = [
 const FAQS = [
   {
     q: "How are sessions counted?",
-    a: "A session starts when a user visits your site and ends after 30 minutes of inactivity. We don't charge for bot traffic or duplicate views within the same session."
+    a: "A session starts when a user visits your site and ends after 30 minutes of inactivity. We don't charge for bot traffic or duplicate views."
   },
   {
     q: "Can I upgrade or downgrade anytime?",
-    a: "Yes, you can change your plan at any time. If you upgrade, the new features will be unlocked immediately and we'll prorate the difference."
+    a: "Yes. You can change your plan at any time. If you upgrade, the new features are unlocked immediately."
   },
   {
-    q: "Is FORENSIQ GDPR compliant?",
-    a: "Yes. We anonymize all PII (Personally Identifiable Information) by default and offer data residency options for enterprise customers."
+    q: "Is Forensiq GDPR compliant?",
+    a: "Absolutely. We mask all PII (Personally Identifiable Information) by default and mask all sensitive inputs automatically."
   },
   {
-    q: "What count as 'Credits'?",
-    a: "Credits are used for AI-powered insights. The Pro plan includes generous credit limits that reset every month."
+    q: "Do I need a credit card to start?",
+    a: "No. You can start with our Starter plan or a 14-day Pro trial without entering any billing details."
   }
 ];
 
@@ -117,7 +117,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 relative px-6">
+      <section className="py-16 relative px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PLANS.map((plan, idx) => (
@@ -182,7 +182,7 @@ export default function PricingPage() {
       </section>
 
       {/* Comparison Strip */}
-      <section className="py-20 bg-slate-950 border-y border-slate-900">
+      <section className="py-16 bg-slate-950 border-y border-slate-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
            <Zap className="w-12 h-12 text-emerald-500 mx-auto mb-6" />
            <h2 className="text-3xl font-black text-white uppercase tracking-tight mb-4">Unmatched analysis depth.</h2>
@@ -206,7 +206,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-black text-white tracking-tighter mb-16 text-center">Frequently Asked Questions</h2>
           <div className="space-y-8">
@@ -221,7 +221,7 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-       <section className="pb-20 px-6">
+       <section className="pb-16 px-6">
         <div className="max-w-5xl mx-auto p-12 md:p-20 rounded-[40px] bg-gradient-to-br from-emerald-500 to-emerald-700 text-center relative overflow-hidden group shadow-2xl shadow-emerald-500/20">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
           <div className="relative z-10">
