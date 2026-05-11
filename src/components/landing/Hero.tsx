@@ -71,7 +71,7 @@ export const Hero = () => {
               <span className="hidden sm:inline">View Studio Demo</span>
               <span className="sm:hidden">Demo</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Dynamic Visualization Side */}
