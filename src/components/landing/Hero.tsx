@@ -151,7 +151,7 @@ export const Hero = () => {
                  className="absolute top-1/3 right-1/4 w-32 h-32 bg-red-500 blur-[60px] rounded-full pointer-events-none"
                />
             </div>
-          </motion.div>
+          </div>
 
           {/* Floating Metric Card */}
           <div 
