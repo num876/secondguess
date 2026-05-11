@@ -2,8 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Play, Layout } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { InteractiveMesh } from "./InteractiveMesh";
 
 export const Hero = () => {
@@ -32,41 +31,21 @@ export const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
         <div className="text-left">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5"
-          >
+          <div className="animate-fade-up inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-wider mb-6 sm:mb-10 shadow-2xl shadow-emerald-500/5">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Free forensic audit available</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(2.5rem,8vw,4.5rem)] font-black text-white leading-tight mb-8"
-          >
+          <h1 className="animate-fade-up [animation-delay:200ms] text-[clamp(2.5rem,8vw,4.5rem)] font-black text-white leading-tight mb-8">
             Uncover the <br/>
             <span className="text-emerald-500">Hidden WHY.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12"
-          >
+          <p className="animate-fade-up [animation-delay:400ms] text-base sm:text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium mb-8 sm:mb-12">
             Forensiq replays every session, flags the exact moment users get stuck, and tells you what to fix — in 30 seconds.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8"
-          >
+          <div className="animate-fade-up [animation-delay:600ms] flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-8">
             <Link
               href="/login"
               className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-xs font-black uppercase tracking-widest shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] touch-target w-full sm:w-auto text-center"
@@ -82,7 +61,7 @@ export const Hero = () => {
               </div>
               <span>SEE HOW IT WORKS ↓</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Dynamic Visualization Side */}
@@ -95,24 +74,17 @@ export const Hero = () => {
              </div>
              <div className="space-y-3">
                 {signals.map((s, i) => (
-                  <motion.div 
+                  <div 
                     key={s + i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="text-xs font-mono text-emerald-400/80 leading-tight"
+                    className="animate-signal text-xs font-mono text-emerald-400/80 leading-tight"
                   >
                     {s}
-                  </motion.div>
+                  </div>
                 ))}
              </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative bg-slate-950 rounded-[2.5rem] border border-emerald-500/15 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.05)] ring-1 ring-white/10 overflow-hidden group"
-          >
+          <div className="animate-fade-up [animation-delay:800ms] relative bg-slate-950 rounded-[2.5rem] border border-emerald-500/15 p-4 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(16,185,129,0.05)] ring-1 ring-white/10 overflow-hidden group">
             <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4 px-2">
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
@@ -142,15 +114,8 @@ export const Hero = () => {
                  <p className="text-slate-700 font-black uppercase tracking-wider text-xs">Awaiting Signal...</p>
                </div>
                
-               {/* Upgraded simulated ghost cursor - reduced animation on mobile via reduced-motion */}
-               <motion.div
-                 animate={{ 
-                   x: [0, 150, -100, 250, 0],
-                   y: [0, -80, 120, 40, 0]
-                 }}
-                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-1/2 left-1/2 group"
-               >
+               {/* Upgraded simulated ghost cursor */}
+               <div className="animate-ghost-float absolute top-1/2 left-1/2 group">
                  <div className="relative">
                     <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-30 rounded-full scale-150 animate-pulse" />
                     <ArrowRight className="w-6 h-6 text-white rotate-[135deg] drop-shadow-2xl relative z-10" />
@@ -158,24 +123,15 @@ export const Hero = () => {
                       Visitor #2901
                     </div>
                  </div>
-               </motion.div>
+               </div>
 
                {/* Simulated Friction Glow */}
-               <motion.div
-                 animate={{ opacity: [0, 0.4, 0], scale: [0.8, 1.2, 0.8] }}
-                 transition={{ duration: 3, repeat: Infinity, delay: 5 }}
-                 className="absolute top-1/3 right-1/4 w-32 h-32 bg-red-500 blur-[60px] rounded-full pointer-events-none"
-               />
+               <div className="animate-glow-pulse absolute top-1/3 right-1/4 w-32 h-32 bg-red-500 blur-[60px] rounded-full pointer-events-none" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Floating Metric Card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl"
-          >
+          <div className="animate-fade-up [animation-delay:1000ms] absolute -bottom-10 -right-10 z-20 glass-card-dark rounded-3xl p-6 border border-white/10 shadow-2xl">
              <p className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Health Score</p>
              <div className="flex items-center gap-4">
                 <span className="text-3xl font-black text-emerald-400">98%</span>
@@ -183,7 +139,7 @@ export const Hero = () => {
                    <div className="h-full bg-emerald-500 w-[98%]" />
                 </div>
              </div>
-          </motion.div>
+          </div>
         </div>
 
       </div>
