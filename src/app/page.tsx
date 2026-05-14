@@ -28,12 +28,12 @@ export default function Home() {
           <motion.div 
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex flex-nowrap gap-24 whitespace-nowrap"
+            className="flex flex-nowrap gap-12 md:gap-24 whitespace-nowrap"
           >
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-24 items-center">
+              <div key={i} className="flex gap-12 md:gap-24 items-center">
                 {["FLOWSTATE", "LUMINA", "CONTEXTLY", "PRISM", "NEURAL", "QUANTUM"].map((logo) => (
-                  <div key={logo} className="text-2xl font-black text-white/20 tracking-tighter hover:text-emerald-500 transition-colors cursor-default">
+                  <div key={logo} className="text-lg md:text-2xl font-black text-white/20 tracking-tighter hover:text-emerald-500 transition-colors cursor-default">
                     {logo}
                   </div>
                 ))}
@@ -109,11 +109,11 @@ export default function Home() {
                    priority
                  />
                  
-                 {/* Scanning Laser Line */}
+                 {/* Scanning Laser Line - Desktop only for performance */}
                  <motion.div 
                    animate={{ top: ["0%", "100%", "0%"] }}
                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute inset-x-0 h-1 bg-emerald-500/40 blur-sm z-20 pointer-events-none"
+                   className="absolute inset-x-0 h-1 bg-emerald-500/40 blur-sm z-20 pointer-events-none hidden md:block"
                  />
 
                  {/* Biometric Tags */}
@@ -155,7 +155,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: 0.2 }}
-                className="glass-card-dark rounded-[2.5rem] p-10 border border-white/10 relative overflow-hidden"
+                className="glass-card-dark rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 border border-white/10 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-6 opacity-10">
                    <div className="text-[60px] font-serif italic text-emerald-400">"</div>
@@ -198,10 +198,10 @@ export default function Home() {
                     Explore Ecosystem
                  </Link>
               </div>
-              <div className="flex-grow grid grid-cols-3 gap-6">
+              <div className="flex-grow grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                  {["Shopify", "Stripe", "Slack", "Zapier", "Hubspot", "Webflow"].map((tech) => (
-                   <div key={tech} className="glass-card-dark rounded-3xl p-8 border border-white/5 flex items-center justify-center group hover:border-emerald-500/30 transition-all">
-                      <span className="text-slate-500 group-hover:text-white font-black uppercase tracking-widest text-[10px] transition-colors">{tech}</span>
+                   <div key={tech} className="glass-card-dark rounded-2xl md:rounded-3xl p-4 md:p-8 border border-white/5 flex items-center justify-center group hover:border-emerald-500/30 transition-all touch-target">
+                      <span className="text-slate-500 group-hover:text-white font-black uppercase tracking-widest text-[8px] md:text-[10px] transition-colors">{tech}</span>
                    </div>
                  ))}
               </div>
@@ -259,9 +259,10 @@ export default function Home() {
                 ))}
              </div>
 
-             <Link href="/login" className="block group/btn">
-               <button className="w-full bg-emerald-500 text-slate-950 font-black uppercase tracking-[0.2em] py-6 rounded-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20 group-hover/btn:scale-[1.02] active:scale-[0.98]">
-                  Get Started Free
+              <Link href="/login" className="block group/btn">
+               <button className="w-full bg-emerald-500 text-slate-950 font-black uppercase tracking-[0.2em] py-5 md:py-6 rounded-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20 group-hover/btn:scale-[1.02] active:scale-[0.98] text-sm md:text-base">
+                  <span className="hidden sm:inline">Get Started Free</span>
+                  <span className="sm:hidden">Start Free</span>
                </button>
              </Link>
              <p className="mt-6 text-[10px] text-slate-600 font-black uppercase tracking-widest">No credit card required for audit phase.</p>
@@ -311,9 +312,10 @@ export default function Home() {
             </h2>
             <div>
               <Link href="/login" className="inline-block group">
-                <button className="relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-12 py-7 rounded-full text-sm font-black uppercase tracking-[0.3em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] overflow-hidden">
+                <button className="relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 md:px-12 py-5 md:py-7 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] overflow-hidden touch-target">
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  Initialize Forensic Audit
+                  <span className="hidden sm:inline">Initialize Forensic Audit</span>
+                  <span className="sm:hidden">Start Audit</span>
                 </button>
               </Link>
             </div>
